@@ -1,0 +1,92 @@
+/**
+ * @fileoverview Commands to select elements.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Select all Artboards in current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSelectAllArtboardsInPage = function(context) {
+  var doc = doc || context.document,
+      initialPage = [doc currentPage],
+      artboards = [initialPage artboards]
+
+  // Deselect all artboards in all pages
+  var pages = [doc pages]
+  for (var i=0; i < [pages count]; i++) {
+    var pageObject = [pages objectAtIndex:i]
+    [doc setCurrentPage:pageObject]
+    var currentPage = [doc currentPage]
+    [currentPage deselectAllLayers]
+  }
+
+  var loop = [artboards objectEnumerator]
+  while (artboard = loop.nextObject()) {
+    [artboard select:true byExpandingSelection:true]
+  }
+
+  [doc setCurrentPage:initialPage]
+}
+
+/**
+ * Select all layers in current Artboard.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSelectAllLayersInCurrentArtboard = function(context) {
+  var page = [doc currentPage],
+      current_artboard = [page currentArtboard]
+
+  [page deselectAllLayers]
+
+  if (current_artboard != null) {
+    var layers = [current_artboard layers]
+    for (var i = 0; i < [layers count]; i++) {
+      var current_layer = [layers objectAtIndex:i]
+      [current_layer select:true byExpandingSelection:true]
+    }
+  } else {
+    [doc showMessage:"No active artboards, select one to make it active."]
+  }
+}
+
+/**
+ * Select all text layers
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSelectAllTextLayers = function(context) {
+  var page = [doc currentPage],
+      layers = [page children]
+
+  [page deselectAllLayers]
+
+  var loop = [layers objectEnumerator]
+
+  while (layer = [loop nextObject]) {
+    if([layer className] == "MSTextLayer") {
+      [layer select:true byExpandingSelection:true]
+    }
+  }
+}
+
+/**
+ * Select current Artboard
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSelectCurrentArtboard = function(context) {
+  var page = [doc currentPage],
+      current_artboard = [page currentArtboard]
+
+  [page deselectAllLayers]
+
+  if (current_artboard != null) {
+    [current_artboard select:true byExpandingSelection:true]
+  } else {
+    alert("You need to select at least one layer from an artboard");
+  }
+}

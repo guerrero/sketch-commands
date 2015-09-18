@@ -1,0 +1,117 @@
+/**
+ * @fileoverview Commands to modify radius property in elements.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+function checkSelectionIsNotEmpty(document, selection) {
+  if (!selection.firstObject()) {
+    doc.showMessage('You should select an element to use this command')
+  }
+}
+
+/**
+ * Creates a pill element with rounded extremes
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRadiusPill = function(context) {
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  checkSelectionIsNotEmpty(doc, selection)
+
+  for (var i = 0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i];
+    var exceptions = [];
+
+    if (layer.isKindOfClass(MSShapeGroup) && layer.firstObject()) {
+      if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
+        return;
+      }
+      var frame = [layer frame]
+      var firstObject = [[layer layers] firstObject]
+
+      radius =
+      [frame width] >= [frame height] ?
+      [frame height] / 2 :
+      [frame width] / 2
+
+      [firstObject setCornerRadiusFloat:Math.round(radius)]
+      [firstObject resetPointsBasedOnUserInteraction]
+    } else if (layer.isKindOfClass(MSRectangleShape)) {
+      var frame = [layer frame]
+      radius =
+      [frame width] >= [frame height] ?
+      [frame height] / 2 :
+      [frame width] / 2
+
+      [layer setCornerRadiusFloat:Math.round(radius)]
+    } else {
+      exceptions.push('"' + layer.name() + ' ' + layer.class() + '"')
+    }
+
+    if (exceptions[0]) {
+      if (exceptions.length > 1) {
+        var exceptionItemList = exceptions.join(', ')
+        var exceptionsMessage = "Radius Pill can't be applied to the following elements: " + exceptionItemList
+      } else {
+        var exceptionItem = exceptions[0]
+        var exceptionsMessage = "Radius Pill can't be applied to " + exceptionItem
+      }
+
+      [doc showMessage:exceptionsMessage];
+    }
+  }
+}
+
+
+/**
+ * Adds radius to selected element with given value
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSetRadiusWithArguments = function(context) {
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  checkSelectionIsNotEmpty(doc, selection)
+
+  var value = "5";
+  var radius = [doc askForUserInput:"Radius" initialValue:value]
+  if(selection.firstObject())
+  for (var i = 0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i];
+    var exceptions = [];
+
+    if (layer.isKindOfClass(MSShapeGroup) && layer.children()[0]) {
+      if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
+        exceptions.push('"' + layer.name() + ' (' + layer.class() + ')"')
+      } else {
+        var frame = [layer frame]
+        var firstObject = [[layer layers] firstObject]
+
+        [firstObject setCornerRadiusFloat:Math.round(radius)]
+        [firstObject resetPointsBasedOnUserInteraction]
+      }
+    } else if (layer.isKindOfClass(MSRectangleShape)) {
+      var frame = [layer frame]
+
+      [layer setCornerRadiusFloat:Math.round(radius)]
+    } else {
+      exceptions.push('"' + layer.name() + ' (' + layer.class() + ')"')
+    }
+
+    if (exceptions[0]) {
+      if (exceptions.length > 1) {
+        var exceptionItemList = exceptions.join(', ')
+        var exceptionsMessage = "Radius Pill can't be applied to the following elements: " + exceptionItemList
+      } else {
+        var exceptionItem = exceptions[0]
+        var exceptionsMessage = "Radius Pill can't be applied to " + exceptionItem
+      }
+
+      [doc showMessage:exceptionsMessage];
+    }
+  }
+}

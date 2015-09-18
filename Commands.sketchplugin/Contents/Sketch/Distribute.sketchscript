@@ -1,0 +1,79 @@
+/**
+ * @fileoverview Commands to distribute elements.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Distributes selected elements vertically, with same distant beetween them
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onDistributeHorizontally = function(context) {
+
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  function toJSArray(arr) {
+    var len = [arr count],
+        res = [];
+    while(len--){
+      res.push(arr[len]);
+    }
+    return res;
+  }
+
+  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue];
+
+  function sort_by_position(a,b){
+    return [[a frame] left] - [[b frame] left];
+  }
+
+  var sorted_selection = toJSArray(selection).sort(sort_by_position),
+      first_element = sorted_selection[0],
+      left_position = [[first_element frame] left];
+
+      var spacing = [[doc askForUserInput:[first_element frame] ofType:1 initialValue:"10"] integerValue];
+
+  sorted_selection.forEach(function(layer){
+    [[layer frame] setX:left_position];
+    left_position = [[layer frame] left] + [[layer frame] width] + spacing;
+  });
+}
+
+/**
+ * Distributes selected elements vertically, with same distant beetween them
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onDistributeVertically = function(context) {
+
+  if (!doc) {
+    var doc = context.document
+    var selection = context.selection
+  }
+
+  function toJSArray(arr) {
+    var len = [arr count],
+        res = [];
+    while(len--){
+      res.push(arr[len]);
+    }
+    return res;
+  }
+
+  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue];
+
+  function sort_by_position(a,b){
+    return [[a frame] top] - [[b frame] top];
+  }
+
+  var sorted_selection = toJSArray(selection).sort(sort_by_position),
+      first_element = sorted_selection[0],
+      top_position = [[first_element frame] top];
+
+  sorted_selection.forEach(function(layer){
+    [[layer frame] setY:top_position];
+    top_position = [[layer frame] top] + [[layer frame] height] + spacing;
+  });
+}

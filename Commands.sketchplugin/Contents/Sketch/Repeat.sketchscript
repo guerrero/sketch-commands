@@ -1,0 +1,58 @@
+/**
+ * @fileoverview Commands to repeat tasks.
+ * @requires module:library/common
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+@import 'library/common.js'
+
+/**
+ * Repeats selected element vertically with given spacing and number of iterations
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRepeatVertically = function(context) {
+
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  var iterations = [[doc askForUserInput:"Iterations" initialValue:"9"] integerValue],
+      spacing = [[doc askForUserInput:"Spacing" initialValue:"10"] integerValue];
+
+  selection.each(function(layer){
+    frame = [layer frame];
+    iterations.times(function(r){
+      var layer_copy = [layer duplicate],
+          frame2 = [layer_copy frame];
+
+      [frame2 setY:[frame y] + ([frame height]+spacing)*r]
+
+    });
+  });
+}
+
+/**
+ * Repeats selected element vertically with given spacing and number of iterations
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRepeatHorizontally = function(context) {
+
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  var iterations = [[doc askForUserInput:"Iterations" initialValue:"9"] integerValue],
+      spacing = [[doc askForUserInput:"Spacing" initialValue:"10"] integerValue];
+
+  selection.each(function(layer){
+    frame = [layer frame];
+    iterations.times(function(r){
+      var layer_copy = [layer duplicate],
+          frame2 = [layer_copy frame];
+
+      [frame2 setX:[frame x] + ([frame width]+spacing)*r]
+
+    });
+  });
+}

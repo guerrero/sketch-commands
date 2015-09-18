@@ -1,0 +1,265 @@
+/**
+ * @fileoverview Commands to deal with guides.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Create guides with given values.
+ * @function
+ * @shortcut ctrl cm a
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCreateGuidesWithArguments = function(context) {
+  var doc = context.document
+  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage];
+
+  if (current_artboard != null) {
+    // Make sure rulers are visible
+    if ([doc isRulersVisible] == 0) {
+      [doc toggleRulers]
+    }
+
+    var horizontal_guides = [current_artboard horizontalRulerData],
+        vertical_guides = [current_artboard verticalRulerData],
+        question = [doc askForUserInput:"Position (x,y pair)" initialValue:(0 + "," + 0)];
+
+    var pos_x = eval(question.split(",")[0]),
+        pos_y = eval(question.split(",")[1]);
+
+    if (pos_x != 0 && pos_y != 0) {
+      [horizontal_guides addGuideWithValue:pos_x];
+      [vertical_guides addGuideWithValue:pos_y];
+    } else if (pos_x != 0 && pos_y == 0) {
+      [horizontal_guides addGuideWithValue:pos_x];
+    } else if (pos_x == 0 && pos_y != 0) {
+      [vertical_guides addGuideWithValue:pos_y];
+    } else {
+      [doc showMessage:"No guides added"]
+    }
+  } else {
+    [doc showMessage:"You need to select at least one artboard"]
+  }
+}
+
+/**
+ * Create guides around selection.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCreateGuidesAroundSelection = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  // Make sure rulers are visible
+  if ([doc isRulersVisible] == 0) {
+    [doc toggleRulers]
+  }
+
+  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
+  if (current_artboard != null && [selection count] > 0) {
+    var horizontal_guides = [current_artboard horizontalRulerData],
+        vertical_guides = [current_artboard verticalRulerData];
+
+    for (var i = 0; i < [selection count]; i++) {
+      var layer = [selection objectAtIndex:i],
+          pos_x  = [[layer absoluteRect] rulerX]
+          pos_y  = [[layer absoluteRect] rulerY],
+          width  = [[layer frame] width],
+          height = [[layer frame] height]
+
+      [horizontal_guides addGuideWithValue:pos_x]
+      [horizontal_guides addGuideWithValue:pos_x + width]
+      [vertical_guides   addGuideWithValue:pos_y]
+      [vertical_guides   addGuideWithValue:pos_y + height]
+    }
+  } else {
+    [doc showMessage:"You need to select at least one layer"]
+  }
+}
+
+/**
+ * Clear all guides in current artboard.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onClearArtboardGuides = function(context) {
+  var doc = context.document
+
+  Number.prototype.times = function(callback){
+    for (var s = this - 1; s >= 0; s--){
+      callback.call(this,s);
+    };
+  }
+
+  var current_artboard = [[doc currentPage] currentArtboard];
+
+  if (current_artboard != null) {
+    // Make sure rulers are visible
+    if ([doc isRulersVisible] == 0) {
+      [doc toggleRulers]
+    }
+
+    var horizontal_guides = [current_artboard horizontalRulerData],
+        vertical_guides = [current_artboard verticalRulerData];
+
+    // Remove horizontal guides
+    [horizontal_guides numberOfGuides].times(function(){
+      [horizontal_guides removeGuideAtIndex:0];
+    })
+    // Remove vertical guides
+    [vertical_guides numberOfGuides].times(function(){
+      [vertical_guides removeGuideAtIndex:0];
+    })
+  } else {
+    [doc showMessage:"You need to select at least one layer from an artboard"]
+  }
+}
+
+/**
+ * Clear all guides in current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onClearAllGuides = function(context) {
+  var doc = context.document
+
+  Number.prototype.times = function(callback){
+    for (var s = this - 1; s >= 0; s--){
+      callback.call(this,s);
+    };
+  }
+
+  // Make sure rulers are visible
+  if ([doc isRulersVisible] == 0) {
+    [doc toggleRulers]
+  }
+
+  var horizontal_guides = [[doc currentPage] horizontalRulerData],
+      vertical_guides = [[doc currentPage] verticalRulerData];
+
+  // Remove horizontal guides
+  [horizontal_guides numberOfGuides].times(function(){
+    [horizontal_guides removeGuideAtIndex:0];
+  })
+  // Remove vertical guides
+  [vertical_guides numberOfGuides].times(function(){
+    [vertical_guides removeGuideAtIndex:0];
+  })
+}
+
+/**
+ * Clear Vertical guides in current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onClearVerticalGuides = function(context) {
+  var doc = context.document
+
+  Number.prototype.times = function(callback){
+    for (var s = this - 1; s >= 0; s--){
+      callback.call(this,s);
+    };
+  }
+
+  // Make sure rulers are visible
+  if ([doc isRulersVisible] == 0) {
+    [doc toggleRulers]
+  }
+
+  var horizontal_guides = [[doc currentPage] horizontalRulerData],
+      vertical_guides = [[doc currentPage] verticalRulerData];
+
+  // Remove vertical guides
+  [vertical_guides numberOfGuides].times(function(){
+    [vertical_guides removeGuideAtIndex:0];
+  })
+}
+
+/**
+ * Clear Horizontal guides in current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onClearHorizontalGuides = function(context) {
+  var doc = context.document
+
+  Number.prototype.times = function(callback){
+    for (var s = this - 1; s >= 0; s--){
+      callback.call(this,s);
+    };
+  }
+
+  // Make sure rulers are visible
+  if ([doc isRulersVisible] == 0) {
+    [doc toggleRulers]
+  }
+
+  var horizontal_guides = [[doc currentPage] horizontalRulerData],
+      vertical_guides = [[doc currentPage] verticalRulerData];
+
+  // Remove horizontal guides
+  [horizontal_guides numberOfGuides].times(function(){
+    [horizontal_guides removeGuideAtIndex:0];
+  })
+}
+
+/**
+ * Create batch of horizontal guides.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCreateBatchOfHorizontalGuides = function(context) {
+  var doc = context.document
+  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
+
+  if (current_artboard != null) {
+    // Make sure rulers are visible
+    if ([doc isRulersVisible] == 0) {
+      [doc toggleRulers]
+    }
+
+    var horizontal_guides = [current_artboard horizontalRulerData],
+        question = [doc askForUserInput:"Add (pos_x, distance, times)" initialValue:(0 + "," + 0 + "," + 0)]
+        pos_x = eval(question.split(",")[0]),
+        dis = eval(question.split(",")[1]),
+        times = eval(question.split(",")[2]);
+
+    for (var x=0; x<times; x++) {
+      [horizontal_guides addGuideWithValue:pos_x];
+      pos_x = pos_x + dis;
+    }
+  } else {
+    [doc showMessage:"You need to select at least one artboard"]
+  }
+}
+
+/**
+ * Create batch of vertical guides.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCreateBatchOfVerticalGuides = function(context) {
+  var doc = context.document
+  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage];
+
+  if (current_artboard != null) {
+    // Make sure rulers are visible
+    if ([doc isRulersVisible] == 0) {
+      [doc toggleRulers]
+    }
+
+    var vertical_guides = [current_artboard verticalRulerData],
+        question = [doc askForUserInput:"Add (pos_y, distance, times)" initialValue:(0 + "," + 0 + "," + 0)],
+        pos_y = eval(question.split(",")[0]),
+        dis = eval(question.split(",")[1]),
+        times = eval(question.split(",")[2]);
+
+    for (var x=0; x<times; x++) {
+      [vertical_guides addGuideWithValue:pos_y];
+      pos_y = pos_y + dis;
+    }
+  } else {
+    [doc showMessage:"You need to select at least one artboard"]
+  }
+}

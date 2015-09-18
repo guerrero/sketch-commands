@@ -1,0 +1,563 @@
+{
+  "name": "Commands",
+  "description": "Plugins to select and deselect shapes",
+  "author": "Alex Guerrero",
+  "email": "alexguerrero1092@gmail.com",
+  "homepage": "http://github.com/guerrero/sketch-commands",
+  "version": "1.0.0",
+  "identifier": "com.guerrero.sketch.commands",
+  "updateURL": "https://github.com/downloads/example/sketchplugins/sketchplugins.json",
+  "compatibleVersion": "3.3.0",
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Alpha…",
+      "identifier": "alpha…",
+      "script": "Alpha.sketchscript",
+      "handler": "onAlphaWithArguments"
+    },
+    {
+      "name": "Copy Layer List To Clipboard",
+      "identifier": "copylayerlisttoclipboard",
+      "script": "Copy.sketchscript",
+      "handler": "onCopyLayerListToClipboard"
+    },
+    {
+      "name": "Distribute Horizontally",
+      "identifier": "distributehorizontally",
+      "script": "Distribute.sketchscript",
+      "handler": "onDistributeHorizontally"
+    },
+    {
+      "name": "Distribute Vertically",
+      "identifier": "distributevertically",
+      "script": "Distribute.sketchscript",
+      "handler": "onDistributeVertically"
+    },
+    {
+      "name": "Duplicate Artboard Below",
+      "identifier": "duplicateartboardbelow",
+      "script": "Duplicate.sketchscript",
+      "handler": "onDuplicateArtboardBelow"
+    },
+    {
+      "name": "Duplicate Artboard Right",
+      "identifier": "duplicateartboardright",
+      "script": "Duplicate.sketchscript",
+      "handler": "onDuplicateArtboardRight"
+    },
+    {
+      "name": "Export All Artboards",
+      "identifier": "exportallartboards",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllArtboards"
+    },
+    {
+      "name": "Export All Artboards To Dir…",
+      "identifier": "exportallartboardstodir…",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllArtboardsToDirWithArguments"
+    },
+    {
+      "name": "Export All Artboards As PNG",
+      "identifier": "exportallartboardsaspng",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllArtboardsAsPNG"
+    },
+    {
+      "name": "Export All Artboards As SVG",
+      "identifier": "exportallartboardsassvg",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllArtboardsAsSVG"
+    },
+    {
+      "name": "Export All Slices As PDF",
+      "identifier": "exportallslicesaspdf",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllSlicesAsPDF"
+    },
+    {
+      "name": "Export All Slices As Compressed PNG",
+      "identifier": "exportallslicesascompressedpng",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllSlicesAsCompressedPNG"
+    },
+    {
+      "name": "Export All Slices To Dir…",
+      "identifier": "exportallslicestodir…",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllSlicesToDirWithArguments"
+    },
+    {
+      "name": "Export All Slices As PNG",
+      "identifier": "exportallslicesaspng",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllSlicesAsPNG"
+    },
+    {
+      "name": "Export All Slices As SVG",
+      "identifier": "exportallslicesassvg",
+      "script": "Export.sketchscript",
+      "handler": "onExportAllSlicesAsSVG"
+    },
+    {
+      "name": "Copy SVGPath",
+      "identifier": "copysvgpath",
+      "script": "Export.sketchscript",
+      "handler": "onCopySVGPath"
+    },
+    {
+      "name": "Copy Selection To SVGPath",
+      "identifier": "copyselectiontosvgpath",
+      "script": "Export.sketchscript",
+      "handler": "onCopySelectionToSVGPath"
+    },
+    {
+      "name": "Save Document And Export Slices",
+      "identifier": "savedocumentandexportslices",
+      "script": "Export.sketchscript",
+      "handler": "onSaveDocumentAndExportSlices"
+    },
+    {
+      "name": "Save Selection Into Desktop As PDF",
+      "identifier": "saveselectionintodesktopaspdf",
+      "script": "Export.sketchscript",
+      "handler": "onSaveSelectionIntoDesktopAsPDF"
+    },
+    {
+      "name": "Save Selection Into Desktop As PNG",
+      "identifier": "saveselectionintodesktopaspng",
+      "script": "Export.sketchscript",
+      "handler": "onSaveSelectionIntoDesktopAsPNG"
+    },
+    {
+      "name": "Save Selection Into Desktop As SVG",
+      "identifier": "saveselectionintodesktopassvg",
+      "script": "Export.sketchscript",
+      "handler": "onSaveSelectionIntoDesktopAsSVG"
+    },
+    {
+      "name": "Create Guides…",
+      "identifier": "createguides…",
+      "script": "Guides.sketchscript",
+      "handler": "onCreateGuidesWithArguments"
+    },
+    {
+      "name": "Create Guides Around Selection",
+      "identifier": "createguidesaroundselection",
+      "script": "Guides.sketchscript",
+      "handler": "onCreateGuidesAroundSelection"
+    },
+    {
+      "name": "Clear Artboard Guides",
+      "identifier": "clearartboardguides",
+      "script": "Guides.sketchscript",
+      "handler": "onClearArtboardGuides"
+    },
+    {
+      "name": "Clear All Guides",
+      "identifier": "clearallguides",
+      "script": "Guides.sketchscript",
+      "handler": "onClearAllGuides"
+    },
+    {
+      "name": "Clear Vertical Guides",
+      "identifier": "clearverticalguides",
+      "script": "Guides.sketchscript",
+      "handler": "onClearVerticalGuides"
+    },
+    {
+      "name": "Clear Horizontal Guides",
+      "identifier": "clearhorizontalguides",
+      "script": "Guides.sketchscript",
+      "handler": "onClearHorizontalGuides"
+    },
+    {
+      "name": "Create Batch Of Horizontal Guides",
+      "identifier": "createbatchofhorizontalguides",
+      "script": "Guides.sketchscript",
+      "handler": "onCreateBatchOfHorizontalGuides"
+    },
+    {
+      "name": "Create Batch Of Vertical Guides",
+      "identifier": "createbatchofverticalguides",
+      "script": "Guides.sketchscript",
+      "handler": "onCreateBatchOfVerticalGuides"
+    },
+    {
+      "name": "Offset",
+      "identifier": "offset",
+      "script": "Offset.sketchscript",
+      "handler": "onOffset"
+    },
+    {
+      "name": "Duplicate Current Page",
+      "identifier": "duplicatecurrentpage",
+      "script": "Page.sketchscript",
+      "handler": "onDuplicateCurrentPage"
+    },
+    {
+      "name": "Set Page Name…",
+      "identifier": "setpagename…",
+      "script": "Page.sketchscript",
+      "handler": "onSetPageNameWithArguments"
+    },
+    {
+      "name": "New Page",
+      "identifier": "newpage",
+      "script": "Page.sketchscript",
+      "handler": "onNewPage"
+    },
+    {
+      "name": "Remove Current Page",
+      "identifier": "removecurrentpage",
+      "script": "Page.sketchscript",
+      "handler": "onRemoveCurrentPage"
+    },
+    {
+      "name": "Set Position…",
+      "identifier": "setposition…",
+      "script": "Position.sketchscript",
+      "handler": "onSetPositionWithArguments"
+    },
+    {
+      "name": "Fix Position",
+      "identifier": "fixposition",
+      "script": "Position.sketchscript",
+      "handler": "onFixPosition"
+    },
+    {
+      "name": "Swap Positions",
+      "identifier": "swappositions",
+      "script": "Position.sketchscript",
+      "handler": "onSwapPositions"
+    },
+    {
+      "name": "Move Up 100px",
+      "identifier": "moveup100px",
+      "script": "Position.sketchscript",
+      "handler": "onMoveUp100px"
+    },
+    {
+      "name": "Move Down 100px",
+      "identifier": "movedown100px",
+      "script": "Position.sketchscript",
+      "handler": "onMoveDown100px"
+    },
+    {
+      "name": "Move Left 100px",
+      "identifier": "moveleft100px",
+      "script": "Position.sketchscript",
+      "handler": "onMoveLeft100px"
+    },
+    {
+      "name": "Move Right 100px",
+      "identifier": "moveright100px",
+      "script": "Position.sketchscript",
+      "handler": "onMoveRight100px"
+    },
+    {
+      "name": "Radius Pill",
+      "identifier": "radiuspill",
+      "script": "Radius.sketchscript",
+      "handler": "onRadiusPill"
+    },
+    {
+      "name": "Set Radius…",
+      "identifier": "setradius…",
+      "script": "Radius.sketchscript",
+      "handler": "onSetRadiusWithArguments"
+    },
+    {
+      "name": "Repeat Vertically",
+      "identifier": "repeatvertically",
+      "script": "Repeat.sketchscript",
+      "handler": "onRepeatVertically"
+    },
+    {
+      "name": "Repeat Horizontally",
+      "identifier": "repeathorizontally",
+      "script": "Repeat.sketchscript",
+      "handler": "onRepeatHorizontally"
+    },
+    {
+      "name": "Rotate…",
+      "identifier": "rotate…",
+      "script": "Rotate.sketchscript",
+      "handler": "onRotateWithArguments"
+    },
+    {
+      "name": "Select All Artboards In Page",
+      "identifier": "selectallartboardsinpage",
+      "script": "Select.sketchscript",
+      "handler": "onSelectAllArtboardsInPage"
+    },
+    {
+      "name": "Select All Layers In Current Artboard",
+      "identifier": "selectalllayersincurrentartboard",
+      "script": "Select.sketchscript",
+      "handler": "onSelectAllLayersInCurrentArtboard"
+    },
+    {
+      "name": "Select All Text Layers",
+      "identifier": "selectalltextlayers",
+      "script": "Select.sketchscript",
+      "handler": "onSelectAllTextLayers"
+    },
+    {
+      "name": "Select Current Artboard",
+      "identifier": "selectcurrentartboard",
+      "script": "Select.sketchscript",
+      "handler": "onSelectCurrentArtboard"
+    },
+    {
+      "name": "Equalize Min Height",
+      "identifier": "equalizeminheight",
+      "script": "Size.sketchscript",
+      "handler": "onEqualizeMinHeight"
+    },
+    {
+      "name": "Equalize Max Height",
+      "identifier": "equalizemaxheight",
+      "script": "Size.sketchscript",
+      "handler": "onEqualizeMaxHeight"
+    },
+    {
+      "name": "Equalize Min Width",
+      "identifier": "equalizeminwidth",
+      "script": "Size.sketchscript",
+      "handler": "onEqualizeMinWidth"
+    },
+    {
+      "name": "on Equalize Max Width",
+      "identifier": "onequalizemaxwidth",
+      "script": "Size.sketchscript",
+      "handler": "ononEqualizeMaxWidth"
+    },
+    {
+      "name": "Height…",
+      "identifier": "height…",
+      "script": "Size.sketchscript",
+      "handler": "onHeightWithArguments"
+    },
+    {
+      "name": "Increase Height Size 100px",
+      "identifier": "increaseheightsize100px",
+      "script": "Size.sketchscript",
+      "handler": "onIncreaseHeightSize100px"
+    },
+    {
+      "name": "Decrease Height Size 100px",
+      "identifier": "decreaseheightsize100px",
+      "script": "Size.sketchscript",
+      "handler": "onDecreaseHeightSize100px"
+    },
+    {
+      "name": "Scale To Fit Ratio 16_9",
+      "identifier": "scaletofitratio16_9",
+      "script": "Size.sketchscript",
+      "handler": "onScaleToFitRatio16_9"
+    },
+    {
+      "name": "Scale To Fit Ratio 4_3",
+      "identifier": "scaletofitratio4_3",
+      "script": "Size.sketchscript",
+      "handler": "onScaleToFitRatio4_3"
+    },
+    {
+      "name": "Set Size…",
+      "identifier": "setsize…",
+      "script": "Size.sketchscript",
+      "handler": "onSetSizeWithArguments"
+    },
+    {
+      "name": "Set Width…",
+      "identifier": "setwidth…",
+      "script": "Size.sketchscript",
+      "handler": "onSetWidthWithArguments"
+    },
+    {
+      "name": "Increase Width Size 100px",
+      "identifier": "increasewidthsize100px",
+      "script": "Size.sketchscript",
+      "handler": "onIncreaseWidthSize100px"
+    },
+    {
+      "name": "Decrease Width Size 100px",
+      "identifier": "decreasewidthsize100px",
+      "script": "Size.sketchscript",
+      "handler": "onDecreaseWidthSize100px"
+    },
+    {
+      "name": "Lower Case",
+      "identifier": "lowercase",
+      "script": "Text.sketchscript",
+      "handler": "onLowerCase"
+    },
+    {
+      "name": "Upper Case",
+      "identifier": "uppercase",
+      "script": "Text.sketchscript",
+      "handler": "onUpperCase"
+    },
+    {
+      "name": "Sentence Case",
+      "identifier": "sentencecase",
+      "script": "Text.sketchscript",
+      "handler": "onSentenceCase"
+    },
+    {
+      "name": "Title Case",
+      "identifier": "titlecase",
+      "script": "Text.sketchscript",
+      "handler": "onTitleCase"
+    }
+  ],
+  "menu": {
+    "isRoot": true,
+    "items": [
+      {
+        "title": "Alpha",
+        "items": [
+          "alpha…"
+        ]
+      },
+      {
+        "title": "Copy",
+        "items": [
+          "copylayerlisttoclipboard"
+        ]
+      },
+      {
+        "title": "Distribute",
+        "items": [
+          "distributehorizontally",
+          "distributevertically"
+        ]
+      },
+      {
+        "title": "Duplicate",
+        "items": [
+          "duplicateartboardbelow",
+          "duplicateartboardright"
+        ]
+      },
+      {
+        "title": "Export",
+        "items": [
+          "exportallartboards",
+          "exportallartboardstodir…",
+          "exportallartboardsaspng",
+          "exportallartboardsassvg",
+          "exportallslicesaspdf",
+          "exportallslicesascompressedpng",
+          "exportallslicestodir…",
+          "exportallslicesaspng",
+          "exportallslicesassvg",
+          "copysvgpath",
+          "copyselectiontosvgpath",
+          "savedocumentandexportslices",
+          "saveselectionintodesktopaspdf",
+          "saveselectionintodesktopaspng",
+          "saveselectionintodesktopassvg"
+        ]
+      },
+      {
+        "title": "Guides",
+        "items": [
+          "createguides…",
+          "createguidesaroundselection",
+          "clearartboardguides",
+          "clearallguides",
+          "clearverticalguides",
+          "clearhorizontalguides",
+          "createbatchofhorizontalguides",
+          "createbatchofverticalguides"
+        ]
+      },
+      {
+        "title": "Offset",
+        "items": [
+          "offset"
+        ]
+      },
+      {
+        "title": "Page",
+        "items": [
+          "duplicatecurrentpage",
+          "setpagename…",
+          "newpage",
+          "removecurrentpage"
+        ]
+      },
+      {
+        "title": "Position",
+        "items": [
+          "setposition…",
+          "fixposition",
+          "swappositions",
+          "moveup100px",
+          "movedown100px",
+          "moveleft100px",
+          "moveright100px"
+        ]
+      },
+      {
+        "title": "Radius",
+        "items": [
+          "radiuspill",
+          "setradius…"
+        ]
+      },
+      {
+        "title": "Repeat",
+        "items": [
+          "repeatvertically",
+          "repeathorizontally"
+        ]
+      },
+      {
+        "title": "Rotate",
+        "items": [
+          "rotate…"
+        ]
+      },
+      {
+        "title": "Select",
+        "items": [
+          "selectallartboardsinpage",
+          "selectalllayersincurrentartboard",
+          "selectalltextlayers",
+          "selectcurrentartboard"
+        ]
+      },
+      {
+        "title": "Size",
+        "items": [
+          "equalizeminheight",
+          "equalizemaxheight",
+          "equalizeminwidth",
+          "onequalizemaxwidth",
+          "height…",
+          "increaseheightsize100px",
+          "decreaseheightsize100px",
+          "scaletofitratio16_9",
+          "scaletofitratio4_3",
+          "setsize…",
+          "setwidth…",
+          "increasewidthsize100px",
+          "decreasewidthsize100px"
+        ]
+      },
+      {
+        "title": "Text",
+        "items": [
+          "lowercase",
+          "uppercase",
+          "sentencecase",
+          "titlecase"
+        ]
+      }
+    ]
+  }
+}

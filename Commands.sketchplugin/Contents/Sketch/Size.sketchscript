@@ -1,0 +1,277 @@
+/**
+ * @fileoverview Commands to modify alpha property in elements.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Set selected items height equal to the object min height of selection.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onEqualizeMinHeight = function(context) {
+
+  var selection = context.selection
+  var min_height = 999999
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        height = [frame height]
+
+        min_height = Math.min(height, min_height)
+  }
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setHeight:Math.round(min_height)]
+  }
+}
+
+/**
+ * Set selected items height equal to the object max height of selection.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onEqualizeMaxHeight = function(context) {
+
+  var selection = context.selection
+  var max_height = 0
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        height = [frame height]
+
+        max_height = Math.max(height, max_height)
+  }
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setHeight:Math.round(max_height)]
+  }
+}
+
+/**
+ * Set selected items width equal to the object min width of selection.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onEqualizeMinWidth = function(context) {
+
+  var selection = context.selection
+  var min_width = 999999
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        width = [frame width]
+
+        min_width = Math.min(width, min_width)
+  }
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setWidth:Math.round(min_width)]
+  }
+}
+
+/**
+ * Set selected items width equal to the object max width of selection.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var ononEqualizeMaxWidth = function(context) {
+  var selection = context.selection
+  var max_width = 0
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        width = [frame width]
+
+        max_width = Math.max(width, max_width)
+  }
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setWidth:Math.round(max_width)]
+  }
+}
+
+/**
+ * Set height of selected element from given value.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onHeightWithArguments = function(context) {
+
+  var doc = context.document
+  var selection = context.selection
+  var height = 100
+
+  if ([selection count] === 1) {
+    var layer = selection[0],
+        frame = [layer frame],
+        height = [frame height]
+  }
+  height = eval([[doc askForUserInput:"Height" initialValue:height] toString])
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setHeight:Math.round(height)]
+  }
+}
+
+/**
+ * Increase height of selected element in 100px.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onIncreaseHeightSize100px = function(context) {
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    [[layer frame] addHeight: 100]
+  }
+}
+
+/**
+ * Decrease height of selected element in 100px.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onDecreaseHeightSize100px = function(context) {
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    [[layer frame] subtractHeight: 100]
+  }
+}
+
+/**
+ * Scale selected object to fit 16:9 aspect ratio.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onScaleToFitRatio16_9 = function(context) {
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        width = [frame width],
+        height = [frame height];
+
+    [frame setWidth:width];
+    [frame setHeight:(width / (16/9))];
+
+  }
+}
+
+/**
+ * Scale selected object to fit 4:3 aspect ratio.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onScaleToFitRatio4_3 = function(context) {
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame],
+        width = [frame width],
+        height = [frame height];
+
+    [frame setWidth:width];
+    [frame setHeight:(width / (4/3))];
+
+  }
+}
+
+/**
+ * Set size of selected element from given value.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSetSizeWithArguments = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var height = 100,
+      width = 100,
+      size = ""
+
+  if ([selection count] === 1) {
+    var layer = selection[0],
+        frame = [layer frame],
+        width = [frame width],
+        height = [frame height]
+  }
+  size = [doc askForUserInput:"Size (w,h pair)" initialValue:width + "," + height]
+
+  var w = eval(size.split(",")[0])
+  var h = eval(size.split(",")[1])
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setWidth:Math.round(w)]
+    [frame setHeight:Math.round(h)]
+  }
+}
+
+/**
+ * Set width of selected element from given value.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSetWidthWithArguments = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var width = 100;
+  if ([selection count] === 1) {
+    var layer = [selection firstObject],
+        frame = [layer frame],
+        width = [frame width]
+  }
+  width = eval([[doc askForUserInput:"Width" ofType:1 initialValue:width] toString])
+
+  for (var i=0; i < [selection count]; i++){
+    var layer = [selection objectAtIndex:i],
+        frame = [layer frame]
+    [frame setWidth:Math.round(width)]
+  }
+}
+
+/**
+ * Increase width of selected element in 100px.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onIncreaseWidthSize100px = function(context) {
+  var selection = context.selection
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    [[layer frame] addWidth: 100]
+  }
+}
+
+/**
+ * Decrease height of selected element in 100px.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onDecreaseWidthSize100px = function(context) {
+  var selection = context.selection
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    [[layer frame] subtractWidth: 100]
+  }
+}

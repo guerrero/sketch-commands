@@ -1,0 +1,141 @@
+/**
+ * @fileoverview Commands to transform position of elements.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Modifies position of selected elements with given value
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSetPositionWithArguments = function(context) {
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  var first_item = selection[0],
+      x_pos = [[first_item absoluteRect] rulerX],
+      y_pos = [[first_item absoluteRect] rulerY],
+      // x_pos = [[first_item frame] left],
+      // y_pos = [[first_item frame] top],
+      position = [doc askForUserInput:"Position (x,y pair)" initialValue:(x_pos + "," + y_pos)],
+      x = eval(position.split(",")[0]),
+      y = eval(position.split(",")[1])
+
+  for (var i=0; i<[selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+
+    [[layer absoluteRect] setRulerX:x];
+    [[layer absoluteRect] setRulerY:y];
+  }
+}
+
+/**
+ * Fix element position
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onFixPosition = function(context) {
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  for (var i = 0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    layer.frame().y = Math.round(layer.frame().y())
+    layer.frame().x = Math.round(layer.frame().x())
+    layer.frame().width = Math.round(layer.frame().width())
+    layer.frame().height = Math.round(layer.frame().height())
+  }
+}
+
+/**
+ * Swap two elements' positions (only objects in the same artboard weird)
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSwapPositions = function(context) {
+  // This only
+  var doc = context.document
+  var selection = context.selection
+
+  if ( [selection count] == 2){
+
+    var first_object = selection[0],
+        second_object = selection[1],
+        first_position  = { left: [[first_object frame] left], top: [[first_object frame] top] },
+        second_position = { left: [[second_object frame] left], top: [[second_object frame] top] }
+
+    [[first_object frame] setX: (second_position.left)]
+    [[first_object frame] setY: (second_position.top)]
+
+    [[second_object frame] setX: (first_position.left)]
+    [[second_object frame] setY: (first_position.top)]
+
+  } else {
+    [doc showMessage:"You need to select exactly two objects"]
+  }
+}
+
+/**
+ * Move up element 100px
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onMoveUp100px = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    var y = layer.frame().y()
+    layer.frame().y = (y-100)
+  }
+}
+
+/**
+ * Move down element 100px
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onMoveDown100px = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    var y = layer.frame().y()
+    layer.frame().y = (y+100)
+  }
+}
+
+/**
+ * Move left element 100px
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onMoveLeft100px = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    var x = layer.frame().x()
+    layer.frame().x = (x-100)
+  }
+}
+
+/**
+ * Move right element 100px
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onMoveRight100px = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i=0; i < [selection count]; i++) {
+    var layer = [selection objectAtIndex:i]
+    var x = layer.frame().x()
+    layer.frame().x = (x+100)
+  }
+}

@@ -1,0 +1,409 @@
+/**
+ * @fileoverview Commands to export Sketch content to different formats.
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+@import 'library/sandbox.js'
+@import 'library/sandbox-sketch-utils.js'
+@import 'library/common.js'
+
+/**
+ * Export all artboards.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllArtboards = function(context) {
+  var doc = context.document
+    if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_artboards("pdf", null, doc);
+  }
+}
+
+/**
+ * Export all artboards to specified directory
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllArtboardsToDirWithArguments = function(context) {
+  var doc = context.document
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    var file_path = com.bomberstudios.getFileFolder(doc),
+        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path];
+
+     if (0 === export_to_path.indexOf("file://")) {
+        export_to_path = export_to_path.substring(7);
+     }
+
+     com.bomberstudios.export_all_artboards("png", export_to_path, doc);
+  }
+}
+
+/**
+ * Export all artboards.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllArtboardsAsPNG = function(context) {
+  var doc = context.document
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_artboards("png", null, doc);
+  }
+}
+
+/**
+ * Export all artboards.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllArtboardsAsSVG = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_artboards("svg", null, doc);
+  }
+}
+
+
+/**
+ * Export all slices as PDF.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllSlicesAsPDF = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_slices("pdf", null, doc);
+  }
+}
+
+/**
+ * Export all slices as PNG, make a ZIP with the export folder, and open Finder.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAsCompressedPNG = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_slices("png", null, doc);
+
+    // ZIP folder
+    var task = [[NSTask alloc] init],
+        file_basename = [doc displayName]).split('.sketch')[0],
+        argsArray = [NSArray arrayWithObjects:"-r", com.bomberstudios.isodate() + "-" + file_basename + ".zip", file_basename + "_export", nil];
+
+    [task setCurrentDirectoryPath:com.bomberstudios.getFileFolder(doc)];
+    [task setLaunchPath:"/usr/bin/zip"];
+    [task setArguments:argsArray];
+    [task launch];
+
+    com.bomberstudios.reveal_finder_in(com.bomberstudios.getFileFolder(doc) + com.bomberstudios.isodate() + "-" + file_basename + ".zip");
+  }
+}
+
+
+/**
+ * Export all slices in….
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllSlicesToDirWithArguments = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    var file_path = com.bomberstudios.getFileFolder(doc),
+        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path];
+
+    com.bomberstudios.export_all_slices("png", export_to_path, doc);
+  }
+}
+
+/**
+ * Export all slices.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllSlicesAsPNG = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_slices("png", null, doc);
+  }
+}
+
+/**
+ * Export all slices as SVG.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onExportAllSlicesAsPNG = function(context) {
+  var doc = context.document
+
+  if ([doc fileURL] == null) {
+    alert("You need to save your document to use this command");
+  } else {
+    com.bomberstudios.export_all_slices("svg", null, doc);
+  }
+}
+
+/**
+ * Copy SVG Path
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCopySVGPath = function(context) {
+
+  var doc = context.document
+  var selection = context.selection
+
+  function make_temp_folder(){
+    var guid = [[NSProcessInfo processInfo] globallyUniqueString]
+    var path = tmp_path + guid
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil]
+    export_path = path
+  }
+  function copy_text(txt){
+    var pasteBoard = [NSPasteboard generalPasteboard]
+    [pasteBoard declareTypes:[NSArray arrayWithObject:NSPasteboardTypeString] owner:nil]
+    [pasteBoard setString:txt forType:NSPasteboardTypeString]
+  }
+  function do_export(){
+    var doc = context.document
+    log("do_export")
+    var slice = [GKRect rectWithRect:rect];
+    [doc saveArtboardOrSlice:slice toFile:export_filename];
+    var file_url = [NSURL fileURLWithPath:export_filename]
+    var str = [[NSString alloc] initWithContentsOfURL:file_url]
+    var match = str.match(/(\s+)d=\"(.+?)\"(\s+)/)
+    log(match)
+    if(match){
+      var path_string = match[0].trim()
+      copy_text(path_string)
+      [doc showMessage:"SVG Path copied to clipboard"]
+    } else {
+      [doc showMessage:"The selected element is not a path"]
+    }
+  }
+
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      tmp_path = "/tmp/com.bomberstudios.sketch-commands/",
+      export_path;
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(tmp_path, make_temp_folder, true)
+  } else {
+    make_temp_folder()
+  }
+
+  var export_filename = export_path + "/" + [sel name] + ".svg";
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(tmp_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Copy to SVG
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onCopySVGPath = function(context) {
+
+  var doc = context.document
+  var selection = context.selection
+
+  function make_temp_folder(){
+    var guid = [[NSProcessInfo processInfo] globallyUniqueString]
+    var path = tmp_path + guid
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil]
+    export_path = path
+  }
+  function copy_text(txt){
+    var pasteBoard = [NSPasteboard generalPasteboard]
+    [pasteBoard declareTypes:[NSArray arrayWithObject:NSPasteboardTypeString] owner:nil]
+    [pasteBoard setString:txt forType:NSPasteboardTypeString]
+  }
+  function do_export(){
+    log("do_export")
+    var slice = [GKRect rectWithRect:rect];
+    [doc saveArtboardOrSlice:slice toFile:export_filename];
+    var file_url = [NSURL fileURLWithPath:export_filename]
+    var str = [[NSString alloc] initWithContentsOfURL:file_url]
+    copy_text(str)
+    [doc showMessage:"SVG Path copied to clipboard"]
+  }
+
+
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      tmp_path = "/tmp/com.bomberstudios.sketch-commands/",
+      export_path;
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(tmp_path, make_temp_folder, true)
+  } else {
+    make_temp_folder()
+  }
+
+  var export_filename = export_path + "/" + [sel name] + ".svg";
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(tmp_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Save document and export slices
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSaveDocumentAndExportSlices = function(context) {
+  var doc = context.document
+
+  [doc saveDocument:doc];
+
+  com.bomberstudios.export_all_slices("png", null, doc);
+}
+
+/**
+ * Save selection into Desktop as PDF
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSaveSelectionIntoDesktopAsPDF = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".pdf";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".pdf";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Save selection into Desktop as PNG
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSaveSelectionIntoDesktopAsPNG = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".png";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".png";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Save selection into Desktop as SVG
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onSaveSelectionIntoDesktopAsSVG = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".svg";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".svg";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
