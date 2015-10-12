@@ -1,0 +1,22 @@
+{
+  "name": "sketch-commands",
+  "version": "0.1.0",
+  "description": "Fork from Ale Muñoz's Sketch commands using Cocoascript and the new sketch plugin structure",
+  "license": "MIT",
+  "author": {
+    "name": "Alex Guerrero",
+    "email": "alexguerrero1092@gmail.com"
+  },
+  "scripts": {
+    "manifest:update": "node ./tasks/manifest-update.js",
+    "plugin:install": "node ./tasks/plugin-install.js"
+  },
+  "devDependencies": {
+    "bluebird": "^2.10.2",
+    "fs-extra": "^0.24.0",
+    "homedir": "^0.6.0",
+    "inquirer": "^0.10.1",
+    "lodash": "^3.10.1"
+  },
+  "private": true
+}
