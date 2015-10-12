@@ -1,416 +1,475 @@
 {
   "name": "Commands",
-  "description": "Plugins to select and deselect shapes",
+  "description": "Fork from Ale Muñoz's Sketch commands using Cocoascript and the new sketch plugin structure",
   "author": "Alex Guerrero",
   "email": "alexguerrero1092@gmail.com",
   "homepage": "http://github.com/guerrero/sketch-commands",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "identifier": "com.guerrero.sketch.commands",
-  "updateURL": "https://github.com/downloads/example/sketchplugins/sketchplugins.json",
   "compatibleVersion": "3.3.0",
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Alpha…",
-      "identifier": "alpha…",
-      "script": "Alpha.sketchscript",
-      "handler": "onAlphaWithArguments"
-    },
-    {
       "name": "Copy Layer List To Clipboard",
       "identifier": "copylayerlisttoclipboard",
-      "script": "Copy.sketchscript",
-      "handler": "onCopyLayerListToClipboard"
+      "shortcut": "",
+      "handler": "onCopyLayerListToClipboard",
+      "script": "Copy.cocoascript"
     },
     {
       "name": "Distribute Horizontally",
       "identifier": "distributehorizontally",
-      "script": "Distribute.sketchscript",
-      "handler": "onDistributeHorizontally"
+      "shortcut": "",
+      "handler": "onDistributeHorizontally",
+      "script": "Distribute.cocoascript"
     },
     {
       "name": "Distribute Vertically",
       "identifier": "distributevertically",
-      "script": "Distribute.sketchscript",
-      "handler": "onDistributeVertically"
+      "shortcut": "",
+      "handler": "onDistributeVertically",
+      "script": "Distribute.cocoascript"
     },
     {
       "name": "Duplicate Artboard Below",
       "identifier": "duplicateartboardbelow",
-      "script": "Duplicate.sketchscript",
-      "handler": "onDuplicateArtboardBelow"
+      "shortcut": "",
+      "handler": "onDuplicateArtboardBelow",
+      "script": "Duplicate.cocoascript"
     },
     {
       "name": "Duplicate Artboard Right",
       "identifier": "duplicateartboardright",
-      "script": "Duplicate.sketchscript",
-      "handler": "onDuplicateArtboardRight"
+      "shortcut": "",
+      "handler": "onDuplicateArtboardRight",
+      "script": "Duplicate.cocoascript"
     },
     {
       "name": "Export All Artboards",
       "identifier": "exportallartboards",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllArtboards"
+      "shortcut": "",
+      "handler": "onExportAllArtboards",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Artboards To Dir…",
       "identifier": "exportallartboardstodir…",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllArtboardsToDirWithArguments"
+      "shortcut": "",
+      "handler": "onExportAllArtboardsToDirWithArguments",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Artboards As PNG",
       "identifier": "exportallartboardsaspng",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllArtboardsAsPNG"
+      "shortcut": "",
+      "handler": "onExportAllArtboardsAsPNG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Artboards As SVG",
       "identifier": "exportallartboardsassvg",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllArtboardsAsSVG"
+      "shortcut": "",
+      "handler": "onExportAllArtboardsAsSVG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Slices As PDF",
       "identifier": "exportallslicesaspdf",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllSlicesAsPDF"
+      "shortcut": "",
+      "handler": "onExportAllSlicesAsPDF",
+      "script": "Export.cocoascript"
     },
     {
-      "name": "Export All Slices As Compressed PNG",
-      "identifier": "exportallslicesascompressedpng",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllSlicesAsCompressedPNG"
+      "name": "Export As Compressed PNG",
+      "identifier": "exportascompressedpng",
+      "shortcut": "",
+      "handler": "onExportAsCompressedPNG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Slices To Dir…",
       "identifier": "exportallslicestodir…",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllSlicesToDirWithArguments"
+      "shortcut": "",
+      "handler": "onExportAllSlicesToDirWithArguments",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Export All Slices As PNG",
       "identifier": "exportallslicesaspng",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllSlicesAsPNG"
+      "shortcut": "",
+      "handler": "onExportAllSlicesAsPNG",
+      "script": "Export.cocoascript"
     },
     {
-      "name": "Export All Slices As SVG",
-      "identifier": "exportallslicesassvg",
-      "script": "Export.sketchscript",
-      "handler": "onExportAllSlicesAsSVG"
+      "name": "Export All Slices As PNG",
+      "identifier": "exportallslicesaspng",
+      "shortcut": "",
+      "handler": "onExportAllSlicesAsPNG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Copy SVGPath",
       "identifier": "copysvgpath",
-      "script": "Export.sketchscript",
-      "handler": "onCopySVGPath"
+      "shortcut": "",
+      "handler": "onCopySVGPath",
+      "script": "Export.cocoascript"
     },
     {
-      "name": "Copy Selection To SVGPath",
-      "identifier": "copyselectiontosvgpath",
-      "script": "Export.sketchscript",
-      "handler": "onCopySelectionToSVGPath"
+      "name": "Copy SVGPath",
+      "identifier": "copysvgpath",
+      "shortcut": "",
+      "handler": "onCopySVGPath",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Save Document And Export Slices",
       "identifier": "savedocumentandexportslices",
-      "script": "Export.sketchscript",
-      "handler": "onSaveDocumentAndExportSlices"
+      "shortcut": "",
+      "handler": "onSaveDocumentAndExportSlices",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Save Selection Into Desktop As PDF",
       "identifier": "saveselectionintodesktopaspdf",
-      "script": "Export.sketchscript",
-      "handler": "onSaveSelectionIntoDesktopAsPDF"
+      "shortcut": "",
+      "handler": "onSaveSelectionIntoDesktopAsPDF",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Save Selection Into Desktop As PNG",
       "identifier": "saveselectionintodesktopaspng",
-      "script": "Export.sketchscript",
-      "handler": "onSaveSelectionIntoDesktopAsPNG"
+      "shortcut": "",
+      "handler": "onSaveSelectionIntoDesktopAsPNG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Save Selection Into Desktop As SVG",
       "identifier": "saveselectionintodesktopassvg",
-      "script": "Export.sketchscript",
-      "handler": "onSaveSelectionIntoDesktopAsSVG"
+      "shortcut": "",
+      "handler": "onSaveSelectionIntoDesktopAsSVG",
+      "script": "Export.cocoascript"
     },
     {
       "name": "Create Guides…",
       "identifier": "createguides…",
-      "script": "Guides.sketchscript",
-      "handler": "onCreateGuidesWithArguments"
+      "shortcut": "",
+      "handler": "onCreateGuidesWithArguments",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Create Guides Around Selection",
       "identifier": "createguidesaroundselection",
-      "script": "Guides.sketchscript",
-      "handler": "onCreateGuidesAroundSelection"
+      "shortcut": "",
+      "handler": "onCreateGuidesAroundSelection",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Clear Artboard Guides",
       "identifier": "clearartboardguides",
-      "script": "Guides.sketchscript",
-      "handler": "onClearArtboardGuides"
+      "shortcut": "",
+      "handler": "onClearArtboardGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Clear All Guides",
       "identifier": "clearallguides",
-      "script": "Guides.sketchscript",
-      "handler": "onClearAllGuides"
+      "shortcut": "",
+      "handler": "onClearAllGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Clear Vertical Guides",
       "identifier": "clearverticalguides",
-      "script": "Guides.sketchscript",
-      "handler": "onClearVerticalGuides"
+      "shortcut": "",
+      "handler": "onClearVerticalGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Clear Horizontal Guides",
       "identifier": "clearhorizontalguides",
-      "script": "Guides.sketchscript",
-      "handler": "onClearHorizontalGuides"
+      "shortcut": "",
+      "handler": "onClearHorizontalGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Create Batch Of Horizontal Guides",
       "identifier": "createbatchofhorizontalguides",
-      "script": "Guides.sketchscript",
-      "handler": "onCreateBatchOfHorizontalGuides"
+      "shortcut": "",
+      "handler": "onCreateBatchOfHorizontalGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Create Batch Of Vertical Guides",
       "identifier": "createbatchofverticalguides",
-      "script": "Guides.sketchscript",
-      "handler": "onCreateBatchOfVerticalGuides"
-    },
-    {
-      "name": "Offset",
-      "identifier": "offset",
-      "script": "Offset.sketchscript",
-      "handler": "onOffset"
-    },
-    {
-      "name": "Duplicate Current Page",
-      "identifier": "duplicatecurrentpage",
-      "script": "Page.sketchscript",
-      "handler": "onDuplicateCurrentPage"
-    },
-    {
-      "name": "Set Page Name…",
-      "identifier": "setpagename…",
-      "script": "Page.sketchscript",
-      "handler": "onSetPageNameWithArguments"
-    },
-    {
-      "name": "New Page",
-      "identifier": "newpage",
-      "script": "Page.sketchscript",
-      "handler": "onNewPage"
-    },
-    {
-      "name": "Remove Current Page",
-      "identifier": "removecurrentpage",
-      "script": "Page.sketchscript",
-      "handler": "onRemoveCurrentPage"
+      "shortcut": "",
+      "handler": "onCreateBatchOfVerticalGuides",
+      "script": "Guides.cocoascript"
     },
     {
       "name": "Set Position…",
       "identifier": "setposition…",
-      "script": "Position.sketchscript",
-      "handler": "onSetPositionWithArguments"
+      "shortcut": "",
+      "handler": "onSetPositionWithArguments",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Fix Position",
       "identifier": "fixposition",
-      "script": "Position.sketchscript",
-      "handler": "onFixPosition"
+      "shortcut": "",
+      "handler": "onFixPosition",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Swap Positions",
       "identifier": "swappositions",
-      "script": "Position.sketchscript",
-      "handler": "onSwapPositions"
+      "shortcut": "",
+      "handler": "onSwapPositions",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Move Up 100px",
       "identifier": "moveup100px",
-      "script": "Position.sketchscript",
-      "handler": "onMoveUp100px"
+      "shortcut": "",
+      "handler": "onMoveUp100px",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Move Down 100px",
       "identifier": "movedown100px",
-      "script": "Position.sketchscript",
-      "handler": "onMoveDown100px"
+      "shortcut": "",
+      "handler": "onMoveDown100px",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Move Left 100px",
       "identifier": "moveleft100px",
-      "script": "Position.sketchscript",
-      "handler": "onMoveLeft100px"
+      "shortcut": "",
+      "handler": "onMoveLeft100px",
+      "script": "Position.cocoascript"
     },
     {
       "name": "Move Right 100px",
       "identifier": "moveright100px",
-      "script": "Position.sketchscript",
-      "handler": "onMoveRight100px"
+      "shortcut": "",
+      "handler": "onMoveRight100px",
+      "script": "Position.cocoascript"
+    },
+    {
+      "name": "Offset",
+      "identifier": "offset",
+      "shortcut": "",
+      "handler": "onOffset",
+      "script": "Offset.cocoascript"
+    },
+    {
+      "name": "Duplicate Current Page",
+      "identifier": "duplicatecurrentpage",
+      "shortcut": "",
+      "handler": "onDuplicateCurrentPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Set Page Name…",
+      "identifier": "setpagename…",
+      "shortcut": "",
+      "handler": "onSetPageNameWithArguments",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "New Page",
+      "identifier": "newpage",
+      "shortcut": "",
+      "handler": "onNewPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Remove Current Page",
+      "identifier": "removecurrentpage",
+      "shortcut": "",
+      "handler": "onRemoveCurrentPage",
+      "script": "Page.cocoascript"
     },
     {
       "name": "Radius Pill",
       "identifier": "radiuspill",
-      "script": "Radius.sketchscript",
-      "handler": "onRadiusPill"
+      "shortcut": "",
+      "handler": "onRadiusPill",
+      "script": "Radius.cocoascript"
     },
     {
       "name": "Set Radius…",
       "identifier": "setradius…",
-      "script": "Radius.sketchscript",
-      "handler": "onSetRadiusWithArguments"
-    },
-    {
-      "name": "Repeat Vertically",
-      "identifier": "repeatvertically",
-      "script": "Repeat.sketchscript",
-      "handler": "onRepeatVertically"
-    },
-    {
-      "name": "Repeat Horizontally",
-      "identifier": "repeathorizontally",
-      "script": "Repeat.sketchscript",
-      "handler": "onRepeatHorizontally"
+      "shortcut": "",
+      "handler": "onSetRadiusWithArguments",
+      "script": "Radius.cocoascript"
     },
     {
       "name": "Rotate…",
       "identifier": "rotate…",
-      "script": "Rotate.sketchscript",
-      "handler": "onRotateWithArguments"
+      "shortcut": "",
+      "handler": "onRotateWithArguments",
+      "script": "Rotate.cocoascript"
     },
     {
       "name": "Select All Artboards In Page",
       "identifier": "selectallartboardsinpage",
-      "script": "Select.sketchscript",
-      "handler": "onSelectAllArtboardsInPage"
+      "shortcut": "",
+      "handler": "onSelectAllArtboardsInPage",
+      "script": "Select.cocoascript"
     },
     {
       "name": "Select All Layers In Current Artboard",
       "identifier": "selectalllayersincurrentartboard",
-      "script": "Select.sketchscript",
-      "handler": "onSelectAllLayersInCurrentArtboard"
+      "shortcut": "",
+      "handler": "onSelectAllLayersInCurrentArtboard",
+      "script": "Select.cocoascript"
     },
     {
       "name": "Select All Text Layers",
       "identifier": "selectalltextlayers",
-      "script": "Select.sketchscript",
-      "handler": "onSelectAllTextLayers"
+      "shortcut": "",
+      "handler": "onSelectAllTextLayers",
+      "script": "Select.cocoascript"
     },
     {
       "name": "Select Current Artboard",
       "identifier": "selectcurrentartboard",
-      "script": "Select.sketchscript",
-      "handler": "onSelectCurrentArtboard"
+      "shortcut": "",
+      "handler": "onSelectCurrentArtboard",
+      "script": "Select.cocoascript"
+    },
+    {
+      "name": "Repeat Vertically",
+      "identifier": "repeatvertically",
+      "shortcut": "",
+      "handler": "onRepeatVertically",
+      "script": "Repeat.cocoascript"
+    },
+    {
+      "name": "Repeat Horizontally",
+      "identifier": "repeathorizontally",
+      "shortcut": "",
+      "handler": "onRepeatHorizontally",
+      "script": "Repeat.cocoascript"
     },
     {
       "name": "Equalize Min Height",
       "identifier": "equalizeminheight",
-      "script": "Size.sketchscript",
-      "handler": "onEqualizeMinHeight"
+      "shortcut": "",
+      "handler": "onEqualizeMinHeight",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Equalize Max Height",
       "identifier": "equalizemaxheight",
-      "script": "Size.sketchscript",
-      "handler": "onEqualizeMaxHeight"
+      "shortcut": "",
+      "handler": "onEqualizeMaxHeight",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Equalize Min Width",
       "identifier": "equalizeminwidth",
-      "script": "Size.sketchscript",
-      "handler": "onEqualizeMinWidth"
+      "shortcut": "",
+      "handler": "onEqualizeMinWidth",
+      "script": "Size.cocoascript"
     },
     {
       "name": "on Equalize Max Width",
       "identifier": "onequalizemaxwidth",
-      "script": "Size.sketchscript",
-      "handler": "ononEqualizeMaxWidth"
+      "shortcut": "",
+      "handler": "ononEqualizeMaxWidth",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Height…",
       "identifier": "height…",
-      "script": "Size.sketchscript",
-      "handler": "onHeightWithArguments"
+      "shortcut": "",
+      "handler": "onHeightWithArguments",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Increase Height Size 100px",
       "identifier": "increaseheightsize100px",
-      "script": "Size.sketchscript",
-      "handler": "onIncreaseHeightSize100px"
+      "shortcut": "",
+      "handler": "onIncreaseHeightSize100px",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Decrease Height Size 100px",
       "identifier": "decreaseheightsize100px",
-      "script": "Size.sketchscript",
-      "handler": "onDecreaseHeightSize100px"
+      "shortcut": "",
+      "handler": "onDecreaseHeightSize100px",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Scale To Fit Ratio 16_9",
       "identifier": "scaletofitratio16_9",
-      "script": "Size.sketchscript",
-      "handler": "onScaleToFitRatio16_9"
+      "shortcut": "",
+      "handler": "onScaleToFitRatio16_9",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Scale To Fit Ratio 4_3",
       "identifier": "scaletofitratio4_3",
-      "script": "Size.sketchscript",
-      "handler": "onScaleToFitRatio4_3"
+      "shortcut": "",
+      "handler": "onScaleToFitRatio4_3",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Set Size…",
       "identifier": "setsize…",
-      "script": "Size.sketchscript",
-      "handler": "onSetSizeWithArguments"
+      "shortcut": "",
+      "handler": "onSetSizeWithArguments",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Set Width…",
       "identifier": "setwidth…",
-      "script": "Size.sketchscript",
-      "handler": "onSetWidthWithArguments"
+      "shortcut": "",
+      "handler": "onSetWidthWithArguments",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Increase Width Size 100px",
       "identifier": "increasewidthsize100px",
-      "script": "Size.sketchscript",
-      "handler": "onIncreaseWidthSize100px"
+      "shortcut": "",
+      "handler": "onIncreaseWidthSize100px",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Decrease Width Size 100px",
       "identifier": "decreasewidthsize100px",
-      "script": "Size.sketchscript",
-      "handler": "onDecreaseWidthSize100px"
+      "shortcut": "",
+      "handler": "onDecreaseWidthSize100px",
+      "script": "Size.cocoascript"
     },
     {
       "name": "Lower Case",
       "identifier": "lowercase",
-      "script": "Text.sketchscript",
-      "handler": "onLowerCase"
+      "shortcut": "",
+      "handler": "onLowerCase",
+      "script": "Text.cocoascript"
     },
     {
       "name": "Upper Case",
       "identifier": "uppercase",
-      "script": "Text.sketchscript",
-      "handler": "onUpperCase"
+      "shortcut": "",
+      "handler": "onUpperCase",
+      "script": "Text.cocoascript"
     },
     {
       "name": "Sentence Case",
       "identifier": "sentencecase",
-      "script": "Text.sketchscript",
-      "handler": "onSentenceCase"
+      "shortcut": "",
+      "handler": "onSentenceCase",
+      "script": "Text.cocoascript"
     },
     {
       "name": "Title Case",
       "identifier": "titlecase",
-      "script": "Text.sketchscript",
-      "handler": "onTitleCase"
+      "shortcut": "",
+      "handler": "onTitleCase",
+      "script": "Text.cocoascript"
     }
   ],
   "menu": {
@@ -418,9 +477,7 @@
     "items": [
       {
         "title": "Alpha",
-        "items": [
-          "alpha…"
-        ]
+        "items": []
       },
       {
         "title": "Copy",
@@ -450,12 +507,12 @@
           "exportallartboardsaspng",
           "exportallartboardsassvg",
           "exportallslicesaspdf",
-          "exportallslicesascompressedpng",
+          "exportascompressedpng",
           "exportallslicestodir…",
           "exportallslicesaspng",
-          "exportallslicesassvg",
+          "exportallslicesaspng",
           "copysvgpath",
-          "copyselectiontosvgpath",
+          "copysvgpath",
           "savedocumentandexportslices",
           "saveselectionintodesktopaspdf",
           "saveselectionintodesktopaspng",
@@ -476,6 +533,18 @@
         ]
       },
       {
+        "title": "Position",
+        "items": [
+          "setposition…",
+          "fixposition",
+          "swappositions",
+          "moveup100px",
+          "movedown100px",
+          "moveleft100px",
+          "moveright100px"
+        ]
+      },
+      {
         "title": "Offset",
         "items": [
           "offset"
@@ -491,29 +560,10 @@
         ]
       },
       {
-        "title": "Position",
-        "items": [
-          "setposition…",
-          "fixposition",
-          "swappositions",
-          "moveup100px",
-          "movedown100px",
-          "moveleft100px",
-          "moveright100px"
-        ]
-      },
-      {
         "title": "Radius",
         "items": [
           "radiuspill",
           "setradius…"
-        ]
-      },
-      {
-        "title": "Repeat",
-        "items": [
-          "repeatvertically",
-          "repeathorizontally"
         ]
       },
       {
@@ -529,6 +579,13 @@
           "selectalllayersincurrentartboard",
           "selectalltextlayers",
           "selectcurrentartboard"
+        ]
+      },
+      {
+        "title": "Repeat",
+        "items": [
+          "repeatvertically",
+          "repeathorizontally"
         ]
       },
       {
