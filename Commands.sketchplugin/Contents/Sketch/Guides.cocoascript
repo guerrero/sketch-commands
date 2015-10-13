@@ -7,7 +7,6 @@
 /**
  * Create guides with given values.
  * @function
- * @shortcut ctrl cm a
  * @param {Object} context - The current Sketch app context.
  */
 var onCreateGuidesWithArguments = function(context) {
