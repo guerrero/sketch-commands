@@ -10,18 +10,18 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Alpha…",
-      "identifier": "alpha…",
-      "shortcut": "",
-      "handler": "onAlphaWithArguments",
-      "script": "Alpha.cocoascript"
-    },
-    {
       "name": "Copy Layer List To Clipboard",
       "identifier": "copylayerlisttoclipboard",
       "shortcut": "",
       "handler": "onCopyLayerListToClipboard",
       "script": "Copy.cocoascript"
+    },
+    {
+      "name": "Alpha…",
+      "identifier": "alpha…",
+      "shortcut": "",
+      "handler": "onAlphaWithArguments",
+      "script": "Alpha.cocoascript"
     },
     {
       "name": "Distribute Horizontally",
@@ -36,104 +36,6 @@
       "shortcut": "",
       "handler": "onDistributeVertically",
       "script": "Distribute.cocoascript"
-    },
-    {
-      "name": "Create Guides…",
-      "identifier": "createguides…",
-      "shortcut": "",
-      "handler": "onCreateGuidesWithArguments",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Create Guides Around Selection",
-      "identifier": "createguidesaroundselection",
-      "shortcut": "",
-      "handler": "onCreateGuidesAroundSelection",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Clear Artboard Guides",
-      "identifier": "clearartboardguides",
-      "shortcut": "",
-      "handler": "onClearArtboardGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Clear All Guides",
-      "identifier": "clearallguides",
-      "shortcut": "",
-      "handler": "onClearAllGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Clear Vertical Guides",
-      "identifier": "clearverticalguides",
-      "shortcut": "",
-      "handler": "onClearVerticalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Clear Horizontal Guides",
-      "identifier": "clearhorizontalguides",
-      "shortcut": "",
-      "handler": "onClearHorizontalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Create Batch Of Horizontal Guides",
-      "identifier": "createbatchofhorizontalguides",
-      "shortcut": "",
-      "handler": "onCreateBatchOfHorizontalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Create Batch Of Vertical Guides",
-      "identifier": "createbatchofverticalguides",
-      "shortcut": "",
-      "handler": "onCreateBatchOfVerticalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Duplicate Current Page",
-      "identifier": "duplicatecurrentpage",
-      "shortcut": "",
-      "handler": "onDuplicateCurrentPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Set Page Name…",
-      "identifier": "setpagename…",
-      "shortcut": "",
-      "handler": "onSetPageNameWithArguments",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "New Page",
-      "identifier": "newpage",
-      "shortcut": "",
-      "handler": "onNewPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Remove Current Page",
-      "identifier": "removecurrentpage",
-      "shortcut": "",
-      "handler": "onRemoveCurrentPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Duplicate Artboard Below",
-      "identifier": "duplicateartboardbelow",
-      "shortcut": "",
-      "handler": "onDuplicateArtboardBelow",
-      "script": "Duplicate.cocoascript"
-    },
-    {
-      "name": "Duplicate Artboard Right",
-      "identifier": "duplicateartboardright",
-      "shortcut": "",
-      "handler": "onDuplicateArtboardRight",
-      "script": "Duplicate.cocoascript"
     },
     {
       "name": "Export All Artboards",
@@ -239,6 +141,104 @@
       "shortcut": "",
       "handler": "onSaveSelectionIntoDesktopAsSVG",
       "script": "Export.cocoascript"
+    },
+    {
+      "name": "Duplicate Artboard Below",
+      "identifier": "duplicateartboardbelow",
+      "shortcut": "",
+      "handler": "onDuplicateArtboardBelow",
+      "script": "Duplicate.cocoascript"
+    },
+    {
+      "name": "Duplicate Artboard Right",
+      "identifier": "duplicateartboardright",
+      "shortcut": "",
+      "handler": "onDuplicateArtboardRight",
+      "script": "Duplicate.cocoascript"
+    },
+    {
+      "name": "Create Guides…",
+      "identifier": "createguides…",
+      "shortcut": "",
+      "handler": "onCreateGuidesWithArguments",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Guides Around Selection",
+      "identifier": "createguidesaroundselection",
+      "shortcut": "",
+      "handler": "onCreateGuidesAroundSelection",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Artboard Guides",
+      "identifier": "clearartboardguides",
+      "shortcut": "",
+      "handler": "onClearArtboardGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear All Guides",
+      "identifier": "clearallguides",
+      "shortcut": "",
+      "handler": "onClearAllGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Vertical Guides",
+      "identifier": "clearverticalguides",
+      "shortcut": "",
+      "handler": "onClearVerticalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Horizontal Guides",
+      "identifier": "clearhorizontalguides",
+      "shortcut": "",
+      "handler": "onClearHorizontalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Batch Of Horizontal Guides",
+      "identifier": "createbatchofhorizontalguides",
+      "shortcut": "",
+      "handler": "onCreateBatchOfHorizontalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Batch Of Vertical Guides",
+      "identifier": "createbatchofverticalguides",
+      "shortcut": "",
+      "handler": "onCreateBatchOfVerticalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Duplicate Current Page",
+      "identifier": "duplicatecurrentpage",
+      "shortcut": "",
+      "handler": "onDuplicateCurrentPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Set Page Name…",
+      "identifier": "setpagename…",
+      "shortcut": "",
+      "handler": "onSetPageNameWithArguments",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "New Page",
+      "identifier": "newpage",
+      "shortcut": "",
+      "handler": "onNewPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Remove Current Page",
+      "identifier": "removecurrentpage",
+      "shortcut": "",
+      "handler": "onRemoveCurrentPage",
+      "script": "Page.cocoascript"
     },
     {
       "name": "Offset",
@@ -497,19 +497,15 @@
     "isRoot": true,
     "items": [
       {
-        "title": "Alpha",
-        "items": [
-          "alpha…"
-        ]
-      },
-      {
-        "title": "Color",
-        "items": []
-      },
-      {
         "title": "Copy",
         "items": [
           "copylayerlisttoclipboard"
+        ]
+      },
+      {
+        "title": "Alpha",
+        "items": [
+          "alpha…"
         ]
       },
       {
@@ -517,6 +513,37 @@
         "items": [
           "distributehorizontally",
           "distributevertically"
+        ]
+      },
+      {
+        "title": "Color",
+        "items": []
+      },
+      {
+        "title": "Export",
+        "items": [
+          "exportallartboards",
+          "exportallartboardstodir…",
+          "exportallartboardsaspng",
+          "exportallartboardsassvg",
+          "exportallslicesaspdf",
+          "exportascompressedpng",
+          "exportallslicestodir…",
+          "exportallslicesaspng",
+          "exportallslicesaspng",
+          "copysvgpath",
+          "copysvgpath",
+          "savedocumentandexportslices",
+          "saveselectionintodesktopaspdf",
+          "saveselectionintodesktopaspng",
+          "saveselectionintodesktopassvg"
+        ]
+      },
+      {
+        "title": "Duplicate",
+        "items": [
+          "duplicateartboardbelow",
+          "duplicateartboardright"
         ]
       },
       {
@@ -539,33 +566,6 @@
           "setpagename…",
           "newpage",
           "removecurrentpage"
-        ]
-      },
-      {
-        "title": "Duplicate",
-        "items": [
-          "duplicateartboardbelow",
-          "duplicateartboardright"
-        ]
-      },
-      {
-        "title": "Export",
-        "items": [
-          "exportallartboards",
-          "exportallartboardstodir…",
-          "exportallartboardsaspng",
-          "exportallartboardsassvg",
-          "exportallslicesaspdf",
-          "exportascompressedpng",
-          "exportallslicestodir…",
-          "exportallslicesaspng",
-          "exportallslicesaspng",
-          "copysvgpath",
-          "copysvgpath",
-          "savedocumentandexportslices",
-          "saveselectionintodesktopaspdf",
-          "saveselectionintodesktopaspng",
-          "saveselectionintodesktopassvg"
         ]
       },
       {
@@ -643,6 +643,10 @@
           "sentencecase",
           "titlecase"
         ]
+      },
+      {
+        "title": "Zoom",
+        "items": []
       }
     ]
   }
