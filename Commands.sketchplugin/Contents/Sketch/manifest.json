@@ -10,6 +10,13 @@
   "bundleVersion": 1,
   "commands": [
     {
+      "name": "Alpha…",
+      "identifier": "alpha…",
+      "shortcut": "",
+      "handler": "onAlphaWithArguments",
+      "script": "Alpha.cocoascript"
+    },
+    {
       "name": "Copy Layer List To Clipboard",
       "identifier": "copylayerlisttoclipboard",
       "shortcut": "",
@@ -29,6 +36,90 @@
       "shortcut": "",
       "handler": "onDistributeVertically",
       "script": "Distribute.cocoascript"
+    },
+    {
+      "name": "Create Guides…",
+      "identifier": "createguides…",
+      "shortcut": "",
+      "handler": "onCreateGuidesWithArguments",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Guides Around Selection",
+      "identifier": "createguidesaroundselection",
+      "shortcut": "",
+      "handler": "onCreateGuidesAroundSelection",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Artboard Guides",
+      "identifier": "clearartboardguides",
+      "shortcut": "",
+      "handler": "onClearArtboardGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear All Guides",
+      "identifier": "clearallguides",
+      "shortcut": "",
+      "handler": "onClearAllGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Vertical Guides",
+      "identifier": "clearverticalguides",
+      "shortcut": "",
+      "handler": "onClearVerticalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Clear Horizontal Guides",
+      "identifier": "clearhorizontalguides",
+      "shortcut": "",
+      "handler": "onClearHorizontalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Batch Of Horizontal Guides",
+      "identifier": "createbatchofhorizontalguides",
+      "shortcut": "",
+      "handler": "onCreateBatchOfHorizontalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Create Batch Of Vertical Guides",
+      "identifier": "createbatchofverticalguides",
+      "shortcut": "",
+      "handler": "onCreateBatchOfVerticalGuides",
+      "script": "Guides.cocoascript"
+    },
+    {
+      "name": "Duplicate Current Page",
+      "identifier": "duplicatecurrentpage",
+      "shortcut": "",
+      "handler": "onDuplicateCurrentPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Set Page Name…",
+      "identifier": "setpagename…",
+      "shortcut": "",
+      "handler": "onSetPageNameWithArguments",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "New Page",
+      "identifier": "newpage",
+      "shortcut": "",
+      "handler": "onNewPage",
+      "script": "Page.cocoascript"
+    },
+    {
+      "name": "Remove Current Page",
+      "identifier": "removecurrentpage",
+      "shortcut": "",
+      "handler": "onRemoveCurrentPage",
+      "script": "Page.cocoascript"
     },
     {
       "name": "Duplicate Artboard Below",
@@ -150,60 +241,39 @@
       "script": "Export.cocoascript"
     },
     {
-      "name": "Create Guides…",
-      "identifier": "createguides…",
+      "name": "Offset",
+      "identifier": "offset",
       "shortcut": "",
-      "handler": "onCreateGuidesWithArguments",
-      "script": "Guides.cocoascript"
+      "handler": "onOffset",
+      "script": "Offset.cocoascript"
     },
     {
-      "name": "Create Guides Around Selection",
-      "identifier": "createguidesaroundselection",
+      "name": "Radius Pill",
+      "identifier": "radiuspill",
       "shortcut": "",
-      "handler": "onCreateGuidesAroundSelection",
-      "script": "Guides.cocoascript"
+      "handler": "onRadiusPill",
+      "script": "Radius.cocoascript"
     },
     {
-      "name": "Clear Artboard Guides",
-      "identifier": "clearartboardguides",
+      "name": "Set Radius…",
+      "identifier": "setradius…",
       "shortcut": "",
-      "handler": "onClearArtboardGuides",
-      "script": "Guides.cocoascript"
+      "handler": "onSetRadiusWithArguments",
+      "script": "Radius.cocoascript"
     },
     {
-      "name": "Clear All Guides",
-      "identifier": "clearallguides",
+      "name": "Repeat Vertically",
+      "identifier": "repeatvertically",
       "shortcut": "",
-      "handler": "onClearAllGuides",
-      "script": "Guides.cocoascript"
+      "handler": "onRepeatVertically",
+      "script": "Repeat.cocoascript"
     },
     {
-      "name": "Clear Vertical Guides",
-      "identifier": "clearverticalguides",
+      "name": "Repeat Horizontally",
+      "identifier": "repeathorizontally",
       "shortcut": "",
-      "handler": "onClearVerticalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Clear Horizontal Guides",
-      "identifier": "clearhorizontalguides",
-      "shortcut": "",
-      "handler": "onClearHorizontalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Create Batch Of Horizontal Guides",
-      "identifier": "createbatchofhorizontalguides",
-      "shortcut": "",
-      "handler": "onCreateBatchOfHorizontalGuides",
-      "script": "Guides.cocoascript"
-    },
-    {
-      "name": "Create Batch Of Vertical Guides",
-      "identifier": "createbatchofverticalguides",
-      "shortcut": "",
-      "handler": "onCreateBatchOfVerticalGuides",
-      "script": "Guides.cocoascript"
+      "handler": "onRepeatHorizontally",
+      "script": "Repeat.cocoascript"
     },
     {
       "name": "Set Position…",
@@ -224,6 +294,20 @@
       "identifier": "swappositions",
       "shortcut": "",
       "handler": "onSwapPositions",
+      "script": "Position.cocoascript"
+    },
+    {
+      "name": "Center To Rearmost",
+      "identifier": "centertorearmost",
+      "shortcut": "",
+      "handler": "onCenterToRearmost",
+      "script": "Position.cocoascript"
+    },
+    {
+      "name": "Center To Rearmost",
+      "identifier": "centertorearmost",
+      "shortcut": "",
+      "handler": "onCenterToRearmost",
       "script": "Position.cocoascript"
     },
     {
@@ -253,55 +337,6 @@
       "shortcut": "",
       "handler": "onMoveRight100px",
       "script": "Position.cocoascript"
-    },
-    {
-      "name": "Offset",
-      "identifier": "offset",
-      "shortcut": "",
-      "handler": "onOffset",
-      "script": "Offset.cocoascript"
-    },
-    {
-      "name": "Duplicate Current Page",
-      "identifier": "duplicatecurrentpage",
-      "shortcut": "",
-      "handler": "onDuplicateCurrentPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Set Page Name…",
-      "identifier": "setpagename…",
-      "shortcut": "",
-      "handler": "onSetPageNameWithArguments",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "New Page",
-      "identifier": "newpage",
-      "shortcut": "",
-      "handler": "onNewPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Remove Current Page",
-      "identifier": "removecurrentpage",
-      "shortcut": "",
-      "handler": "onRemoveCurrentPage",
-      "script": "Page.cocoascript"
-    },
-    {
-      "name": "Radius Pill",
-      "identifier": "radiuspill",
-      "shortcut": "",
-      "handler": "onRadiusPill",
-      "script": "Radius.cocoascript"
-    },
-    {
-      "name": "Set Radius…",
-      "identifier": "setradius…",
-      "shortcut": "",
-      "handler": "onSetRadiusWithArguments",
-      "script": "Radius.cocoascript"
     },
     {
       "name": "Rotate…",
@@ -337,20 +372,6 @@
       "shortcut": "",
       "handler": "onSelectCurrentArtboard",
       "script": "Select.cocoascript"
-    },
-    {
-      "name": "Repeat Vertically",
-      "identifier": "repeatvertically",
-      "shortcut": "",
-      "handler": "onRepeatVertically",
-      "script": "Repeat.cocoascript"
-    },
-    {
-      "name": "Repeat Horizontally",
-      "identifier": "repeathorizontally",
-      "shortcut": "",
-      "handler": "onRepeatHorizontally",
-      "script": "Repeat.cocoascript"
     },
     {
       "name": "Equalize Min Height",
@@ -477,6 +498,12 @@
     "items": [
       {
         "title": "Alpha",
+        "items": [
+          "alpha…"
+        ]
+      },
+      {
+        "title": "Color",
         "items": []
       },
       {
@@ -490,6 +517,28 @@
         "items": [
           "distributehorizontally",
           "distributevertically"
+        ]
+      },
+      {
+        "title": "Guides",
+        "items": [
+          "createguides…",
+          "createguidesaroundselection",
+          "clearartboardguides",
+          "clearallguides",
+          "clearverticalguides",
+          "clearhorizontalguides",
+          "createbatchofhorizontalguides",
+          "createbatchofverticalguides"
+        ]
+      },
+      {
+        "title": "Page",
+        "items": [
+          "duplicatecurrentpage",
+          "setpagename…",
+          "newpage",
+          "removecurrentpage"
         ]
       },
       {
@@ -520,16 +569,23 @@
         ]
       },
       {
-        "title": "Guides",
+        "title": "Offset",
         "items": [
-          "createguides…",
-          "createguidesaroundselection",
-          "clearartboardguides",
-          "clearallguides",
-          "clearverticalguides",
-          "clearhorizontalguides",
-          "createbatchofhorizontalguides",
-          "createbatchofverticalguides"
+          "offset"
+        ]
+      },
+      {
+        "title": "Radius",
+        "items": [
+          "radiuspill",
+          "setradius…"
+        ]
+      },
+      {
+        "title": "Repeat",
+        "items": [
+          "repeatvertically",
+          "repeathorizontally"
         ]
       },
       {
@@ -538,32 +594,12 @@
           "setposition…",
           "fixposition",
           "swappositions",
+          "centertorearmost",
+          "centertorearmost",
           "moveup100px",
           "movedown100px",
           "moveleft100px",
           "moveright100px"
-        ]
-      },
-      {
-        "title": "Offset",
-        "items": [
-          "offset"
-        ]
-      },
-      {
-        "title": "Page",
-        "items": [
-          "duplicatecurrentpage",
-          "setpagename…",
-          "newpage",
-          "removecurrentpage"
-        ]
-      },
-      {
-        "title": "Radius",
-        "items": [
-          "radiuspill",
-          "setradius…"
         ]
       },
       {
@@ -579,13 +615,6 @@
           "selectalllayersincurrentartboard",
           "selectalltextlayers",
           "selectcurrentartboard"
-        ]
-      },
-      {
-        "title": "Repeat",
-        "items": [
-          "repeatvertically",
-          "repeathorizontally"
         ]
       },
       {
