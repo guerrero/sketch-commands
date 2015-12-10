@@ -1,0 +1,13 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Create new page in the current document.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  [doc addBlankPage];
+}

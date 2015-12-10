@@ -1,0 +1,22 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Fix element position
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i = 0; i < selection.count(); i++) {
+    var objectFrame = selection.objectAtIndex(i).frame()
+    objectFrame.setY(Math.round(objectFrame.y()))
+    objectFrame.setX(Math.round(objectFrame.x()))
+    objectFrame.setWidth(Math.round(objectFrame.width()))
+    objectFrame.setHeight(Math.round(objectFrame.height()))
+  }
+}

@@ -1,0 +1,22 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Select current Artboard
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var page = [doc currentPage],
+      current_artboard = [page currentArtboard]
+
+  [page deselectAllLayers]
+
+  if (current_artboard != null) {
+    [current_artboard select:true byExpandingSelection:true]
+  } else {
+    alert("You need to select at least one layer from an artboard");
+  }
+}

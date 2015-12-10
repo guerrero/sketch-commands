@@ -1,0 +1,40 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Distributes selected elements horizontally, with same distant between them
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = doc || context.document
+  var selection = selection || context.selection
+
+  function toJSArray(arr) {
+    var len = [arr count],
+        res = [];
+    while(len--){
+      res.push(arr[len]);
+    }
+    return res;
+  }
+
+  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue];
+
+  function sort_by_position(a,b){
+    return [[a frame] left] - [[b frame] left];
+  }
+
+  var sorted_selection = toJSArray(selection).sort(sort_by_position),
+      first_element = sorted_selection[0],
+      left_position = [[first_element frame] left];
+
+      var spacing = [[doc askForUserInput:[first_element frame] ofType:1 initialValue:"10"] integerValue];
+
+  sorted_selection.forEach(function(layer){
+    [[layer frame] setX:left_position];
+    left_position = [[layer frame] left] + [[layer frame] width] + spacing;
+  });
+}

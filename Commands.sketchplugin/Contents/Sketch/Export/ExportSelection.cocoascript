@@ -1,0 +1,126 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+@import 'library/common.js'
+
+/**
+ * Save selection into Desktop as PDF
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".pdf";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".pdf";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Save selection into Desktop as PNG
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".png";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".png";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}
+
+/**
+ * Save selection into Desktop as SVG
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+  var sel = selection[0],
+      rect = [sel absoluteInfluenceRect],
+      paths = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true),
+      desktop_path = [paths objectAtIndex:0],
+      export_filename,
+      modFlags = [NSEvent modifierFlags],
+      overwrite;
+
+  if (modFlags & [NSAlternateKeyMask]) {
+    overwrite = false
+  } else {
+    overwrite = true
+  }
+
+  if(overwrite){
+    export_filename = desktop_path + "/" + [sel name] + ".svg";
+  } else {
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".svg";
+  }
+
+  function do_export(){
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
+    com.bomberstudios.reveal_finder_in(export_filename);
+  }
+
+  if (in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(desktop_path, do_export, true)
+  } else {
+    do_export()
+  }
+}

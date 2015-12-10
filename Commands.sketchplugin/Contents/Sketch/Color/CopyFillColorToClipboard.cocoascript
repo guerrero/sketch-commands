@@ -1,0 +1,18 @@
+/**
+ * Copy fill color to Clipboard
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var selection = context.selection
+
+  if(selection.count() != 0) {
+    var pasteboard = NSPasteboard.generalPasteboard()
+    pasteboard.clearContents()
+
+    var baseColor = selection[0].style().fills().firstObject().color()
+    var hexValue = "#" + baseColor.hexValue()
+    var color = NSArray.arrayWithObjects(hexValue);
+    pasteboard.writeObjects(color);
+  }
+}

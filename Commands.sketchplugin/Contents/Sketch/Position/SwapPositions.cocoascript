@@ -1,0 +1,37 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Swap two elements' positions (only objects in the same artboard weird)
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+
+  if (selection.count() === 2){
+
+    var firstObject = selection[0]
+    var secondObject = selection[1]
+    var firstPosition  = {
+      left: firstObject.frame().left(),
+      top: firstObject.frame().top()
+    }
+    var secondPosition = {
+      left: secondObject.frame().left(),
+      top: secondObject.frame().top()
+    }
+
+    firstObject.frame().setX(secondPosition.left)
+    firstObject.frame().setY(secondPosition.top)
+
+    secondObject.frame().setX(firstPosition.left)
+    secondObject.frame().setY(firstPosition.top)
+
+  } else {
+    doc.showMessage("You need to select exactly two objects")
+  }
+}

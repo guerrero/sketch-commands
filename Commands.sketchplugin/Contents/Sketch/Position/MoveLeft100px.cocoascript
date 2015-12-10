@@ -1,0 +1,49 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Move selected elements given pixels in given direction
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+function _move(element, direction, amount) {
+  switch(direction) {
+    case 'up':
+      var y = element.frame().y()
+      element.frame().setY(y - amount)
+      break
+    case 'down':
+      var y = element.frame().y()
+      element.frame().setY(y + amount)
+      break
+    case 'left':
+      var x = element.frame().x()
+      element.frame().setX(x - amount)
+      break
+    case 'right':
+      var x = element.frame().x()
+      element.frame().setX(x + amount)
+      break
+    break
+    default:
+      doc.showMessage("Error in _move function")
+    break
+  }
+}
+
+/**
+ * Move left selected elements 100px
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+
+  for (var i=0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+    _move(layer, 'left', 100)
+  }
+}

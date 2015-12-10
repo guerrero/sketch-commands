@@ -1,0 +1,46 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Center two objects (target into reference)
+ * @function
+ * @param {Object} targetObject - The element to move.
+ * @param {Object} context - The reference element.
+ */
+function _centerTwoObjects(targetObject, referenceObject) {
+  var referencePosition = {
+    left: referenceObject.frame().left(),
+    top: referenceObject.frame().top()
+  }
+  var referenceSize = {
+    width: referenceObject.frame().width(),
+    height: referenceObject.frame().height()
+  }
+  var targetSize = {
+    width: targetObject.frame().width(),
+    height: targetObject.frame().height()
+  }
+
+  targetObject.frame().setX(referencePosition.left - (targetSize.width - referenceSize.width) / 2)
+  targetObject.frame().setY(referencePosition.top - (targetSize.height - referenceSize.height) / 2)
+}
+
+/**
+ * Center foremost selected object into rearmost (only objects in the same artboard weird)
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+  var rearmostObject = selection[0]
+  var foremostObject = selection[1]
+
+  if ( selection.count() == 2){
+    _centerTwoObjects(foremostObject, rearmostObject)
+  } else {
+    doc.showMessage("You need to select exactly two objects")
+  }
+}

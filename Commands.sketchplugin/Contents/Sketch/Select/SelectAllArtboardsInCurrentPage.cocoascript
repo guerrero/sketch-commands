@@ -1,0 +1,31 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Select all Artboards in current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = doc || context.document,
+      initialPage = [doc currentPage],
+      artboards = [initialPage artboards]
+
+  // Deselect all artboards in all pages
+  var pages = [doc pages]
+  for (var i=0; i < [pages count]; i++) {
+    var pageObject = [pages objectAtIndex:i]
+    [doc setCurrentPage:pageObject]
+    var currentPage = [doc currentPage]
+    [currentPage deselectAllLayers]
+  }
+
+  var loop = [artboards objectEnumerator]
+  while (artboard = loop.nextObject()) {
+    [artboard select:true byExpandingSelection:true]
+  }
+
+  [doc setCurrentPage:initialPage]
+}

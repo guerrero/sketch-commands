@@ -1,0 +1,22 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Duplicates current page.
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+
+  var doc = doc || context.document
+
+  var page = [doc currentPage],
+      newPage = [page copy]
+
+  newPage.setName([page name] + " Copy")
+
+  [[doc documentData] addPage:newPage]
+  [doc setCurrentPage:newPage]
+}

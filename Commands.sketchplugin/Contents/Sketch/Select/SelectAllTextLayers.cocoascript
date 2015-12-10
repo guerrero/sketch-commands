@@ -1,0 +1,24 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Select all text layers
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var page = [doc currentPage],
+      layers = [page children]
+
+  [page deselectAllLayers]
+
+  var loop = [layers objectEnumerator]
+
+  while (layer = [loop nextObject]) {
+    if([layer className] == "MSTextLayer") {
+      [layer select:true byExpandingSelection:true]
+    }
+  }
+}

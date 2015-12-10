@@ -1,0 +1,28 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Modifies position of selected elements with given value
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+
+  var firstItem = selection[0]
+  var x_pos = firstItem.absoluteRect().rulerX()
+  var y_pos = firstItem.absoluteRect().rulerY()
+  var position = [doc askForUserInput:"Position (x,y pair)" initialValue:(x_pos + "," + y_pos)]
+  var x = eval(position.split(",")[0])
+  var y = eval(position.split(",")[1])
+
+  for (var i=0; i<selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+
+    layer.absoluteRect().setRulerX(x)
+    layer.absoluteRect().setRulerX(y)
+  }
+}

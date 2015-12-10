@@ -1,0 +1,22 @@
+/**
+ * @author Ale Muñoz
+ * @copyright 2015 Ale Muñoz. All rights reserved.
+ */
+
+/**
+ * Convert selected text to upper case
+ * @function
+ * @param {Object} context - The current Sketch app context.
+ */
+var onRun = function (context) {
+  var selection = selection || context.selection
+
+  for (var i = 0; i < [selection count]; i++) {
+    var s = [selection objectAtIndex:i]
+
+    if([s class] === MSTextLayer){
+      var new_text = [s stringValue].toUpperCase();
+      [s setStringValue:new_text]
+    }
+  }
+}
