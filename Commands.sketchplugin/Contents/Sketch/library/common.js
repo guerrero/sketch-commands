@@ -8,13 +8,7 @@ com.bomberstudios = {
   },
   create_folder: function(path) {
     var file_manager = [NSFileManager defaultManager];
-    if (in_sandbox()) {
-      sandboxAccess.accessFilePath_withBlock_persistPermission(path, function(){
-        [file_manager createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil];
-      }, true)
-    } else {
-      [file_manager createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil];
-    }
+    [file_manager createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil];
   },
   getFileFolder: function(doc){
     var file_url = [doc fileURL],
@@ -48,11 +42,7 @@ com.bomberstudios = {
       }
     }
 
-    if (in_sandbox()) {
-      sandboxAccess.accessFilePath_withBlock_persistPermission(path, export_loop, true);
-    } else {
-      export_loop();
-    }
+    export_loop();
   },
   export_all_artboards: function(format,path, doc){
     if (path == undefined) {
@@ -77,23 +67,12 @@ com.bomberstudios = {
       }
     }
 
-    if (in_sandbox()) {
-      sandboxAccess.accessFilePath_withBlock_persistPermission(path, export_loop, true);
-    } else {
-      log("We are NOT sandboxed");
-      export_loop();
-    }
+    export_loop();
   },
   export_item: function(item,format,path, doc){
     var sel = item;
     var rect = [sel absoluteInfluenceRect];
-    if (in_sandbox()) {
-      sandboxAccess.accessFilePath_withBlock_persistPermission(path, function(){
-        [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:path + "/" + [sel name] + "." + format];
-      }, true)
-    } else {
-      [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:path + "/" + [sel name] + "." + format];
-    }
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:path + "/" + [sel name] + "." + format];
   },
   export_item_to_desktop: function(item,format, doc){
     var desktop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true) objectAtIndex:0];

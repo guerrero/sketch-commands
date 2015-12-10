@@ -19,10 +19,8 @@ var messages = {
 }
 
 var pluginsFolderPaths = {
-  sandboxed: path.join(homedir(), 'Library/Containers/com.bohemiancoding.sketch3/Data/Library/Application Support/com.bohemiancoding.sketch3/Plugins'),
-  nonSandboxed: path.join(homedir(), 'Library/Application Support/com.bohemiancoding.sketch3/Plugins'),
-  sandboxedBeta: path.join(homedir(), 'Library/Containers/com.bohemiancoding.sketch3.beta/Data/Library/Application Support/com.bohemiancoding.sketch3/Plugins'),
-  nonSandboxedBeta: path.join(homedir(), 'Library/Application Support/com.bohemiancoding.sketch3.beta/Plugins')
+  sketch: path.join(homedir(), 'Library/Application Support/com.bohemiancoding.sketch3/Plugins'),
+  sketchBeta: path.join(homedir(), 'Library/Application Support/com.bohemiancoding.sketch3.beta/Plugins')
 }
 
 message('INFO', messages.start)
