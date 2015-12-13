@@ -24,7 +24,7 @@ var onRun = function (context) {
     var layer = [selection objectAtIndex:i]
     var exceptions = []
 
-    if (layer.isKindOfClass(MSShapeGroup) && layer.firstObject()) {
+    if (layer.isKindOfClass(MSShapeGroup) && layer.layers().firstObject()) {
       if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
         return
       }
