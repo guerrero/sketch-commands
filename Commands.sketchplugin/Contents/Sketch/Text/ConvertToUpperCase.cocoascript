@@ -15,7 +15,7 @@ var onRun = function (context) {
     var s = [selection objectAtIndex:i]
 
     if([s class] === MSTextLayer){
-      var new_text = [s stringValue].toUpperCase();
+      var new_text = [s stringValue].toUpperCase()
       [s setStringValue:new_text]
     }
   }

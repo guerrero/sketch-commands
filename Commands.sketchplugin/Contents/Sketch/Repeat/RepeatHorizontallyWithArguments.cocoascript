@@ -16,16 +16,16 @@ var onRun = function (context) {
   var selection = selection || context.selection
 
   var iterations = [[doc askForUserInput:"Iterations" initialValue:"9"] integerValue],
-      spacing = [[doc askForUserInput:"Spacing" initialValue:"10"] integerValue];
+      spacing = [[doc askForUserInput:"Spacing" initialValue:"10"] integerValue]
 
   selection.each(function(layer){
-    frame = [layer frame];
+    frame = [layer frame]
     iterations.times(function(r){
       var layer_copy = [layer duplicate],
-          frame2 = [layer_copy frame];
+          frame2 = [layer_copy frame]
 
       [frame2 setX:[frame x] + ([frame width]+spacing)*r]
 
-    });
-  });
+    })
+  })
 }

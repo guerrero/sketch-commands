@@ -13,9 +13,9 @@
 var onRun = function (context) {
   var doc = context.document
     if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_artboards("pdf", null, doc);
+    com.bomberstudios.export_all_artboards("pdf", null, doc)
   }
 }
 
@@ -27,9 +27,9 @@ var onRun = function (context) {
 var onRun = function (context) {
   var doc = context.document
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_artboards("png", null, doc);
+    com.bomberstudios.export_all_artboards("png", null, doc)
   }
 }
 
@@ -41,15 +41,15 @@ var onRun = function (context) {
 var onRun = function (context) {
   var doc = context.document
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
     var file_path = com.bomberstudios.getFileFolder(doc),
-        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path];
+        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path]
 
      if (0 === export_to_path.indexOf("file://")) {
-        export_to_path = export_to_path.substring(7);
+        export_to_path = export_to_path.substring(7)
      }
 
-     com.bomberstudios.export_all_artboards("png", export_to_path, doc);
+     com.bomberstudios.export_all_artboards("png", export_to_path, doc)
   }
 }

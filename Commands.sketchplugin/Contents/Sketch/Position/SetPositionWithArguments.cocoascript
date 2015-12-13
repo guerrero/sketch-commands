@@ -19,7 +19,7 @@ var onRun = function (context) {
   var x = eval(position.split(",")[0])
   var y = eval(position.split(",")[1])
 
-  for (var i=0; i<selection.count(); i++) {
+  for (var i = 0; i < selection.count(); i++) {
     var layer = selection.objectAtIndex(i)
 
     layer.absoluteRect().setRulerX(x)

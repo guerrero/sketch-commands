@@ -10,7 +10,7 @@
  */
 var onRun = function (context) {
   var doc = context.document
-  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage];
+  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
 
   if (current_artboard != null) {
     // Make sure rulers are visible
@@ -22,11 +22,11 @@ var onRun = function (context) {
         question = [doc askForUserInput:"Add (pos_y, distance, times)" initialValue:(0 + "," + 0 + "," + 0)],
         pos_y = eval(question.split(",")[0]),
         dis = eval(question.split(",")[1]),
-        times = eval(question.split(",")[2]);
+        times = eval(question.split(",")[2])
 
-    for (var x=0; x<times; x++) {
-      [vertical_guides addGuideWithValue:pos_y];
-      pos_y = pos_y + dis;
+    (var x=0; x < times; x++)
+      [vertical_guides addGuideWithValue:pos_y]
+      pos_y = pos_y + dis
     }
   } else {
     [doc showMessage:"You need to select at least one artboard"]

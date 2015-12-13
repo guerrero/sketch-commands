@@ -20,7 +20,7 @@ var onRun = function (context) {
   var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
   if (current_artboard != null && [selection count] > 0) {
     var horizontal_guides = [current_artboard horizontalRulerData],
-        vertical_guides = [current_artboard verticalRulerData];
+        vertical_guides = [current_artboard verticalRulerData]
 
     for (var i = 0; i < [selection count]; i++) {
       var layer = [selection objectAtIndex:i],

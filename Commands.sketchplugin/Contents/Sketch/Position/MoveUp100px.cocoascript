@@ -42,7 +42,7 @@ var onRun = function (context) {
   var doc = context.document
   var selection = context.selection
 
-  for (var i=0; i < selection.count(); i++) {
+  for (var i = 0; i < selection.count(); i++) {
     var layer = selection.objectAtIndex(i)
     _move(layer, 'up', 100)
   }

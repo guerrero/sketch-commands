@@ -14,27 +14,27 @@ var onRun = function (context) {
 
   function toJSArray(arr) {
     var len = [arr count],
-        res = [];
+        res = []
     while(len--){
-      res.push(arr[len]);
+      res.push(arr[len])
     }
-    return res;
+    return res
   }
 
-  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue];
+  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue]
 
   function sort_by_position(a,b){
-    return [[a frame] left] - [[b frame] left];
+    return [[a frame] left] - [[b frame] left]
   }
 
   var sorted_selection = toJSArray(selection).sort(sort_by_position),
       first_element = sorted_selection[0],
-      left_position = [[first_element frame] left];
+      left_position = [[first_element frame] left]
 
-      var spacing = [[doc askForUserInput:[first_element frame] ofType:1 initialValue:"10"] integerValue];
+      var spacing = [[doc askForUserInput:[first_element frame] ofType:1 initialValue:"10"] integerValue]
 
   sorted_selection.forEach(function(layer){
-    [[layer frame] setX:left_position];
-    left_position = [[layer frame] left] + [[layer frame] width] + spacing;
-  });
+    [[layer frame] setX:left_position]
+    left_position = [[layer frame] left] + [[layer frame] width] + spacing
+  })
 }

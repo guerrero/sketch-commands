@@ -19,7 +19,7 @@ var onRun = function (context) {
   var selection = selection || context.selection
 
   // Custom Rotation
-  var rotation = "0";
+  var rotation = "0"
 
   if ([selection count] === 1) {
     var layer = selection[0],

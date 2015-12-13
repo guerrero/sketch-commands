@@ -21,12 +21,12 @@ var onRun = function (context) {
   checkSelectionIsNotEmpty(doc, selection)
 
   for (var i = 0; i < [selection count]; i++) {
-    var layer = [selection objectAtIndex:i];
-    var exceptions = [];
+    var layer = [selection objectAtIndex:i]
+    var exceptions = []
 
     if (layer.isKindOfClass(MSShapeGroup) && layer.firstObject()) {
       if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
-        return;
+        return
       }
       var frame = [layer frame]
       var firstObject = [[layer layers] firstObject]
@@ -59,7 +59,7 @@ var onRun = function (context) {
         var exceptionsMessage = "Radius Pill can't be applied to " + exceptionItem
       }
 
-      [doc showMessage:exceptionsMessage];
+      [doc showMessage:exceptionsMessage]
     }
   }
 }

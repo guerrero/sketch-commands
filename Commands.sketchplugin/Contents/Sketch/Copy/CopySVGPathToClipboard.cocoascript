@@ -29,8 +29,8 @@ var onRun = function (context) {
   function do_export(){
     var doc = context.document
     log("do_export")
-    var slice = [GKRect rectWithRect:rect];
-    [doc saveArtboardOrSlice:slice toFile:export_filename];
+    var slice = [GKRect rectWithRect:rect]
+    [doc saveArtboardOrSlice:slice toFile:export_filename]
     var file_url = [NSURL fileURLWithPath:export_filename]
     var str = [[NSString alloc] initWithContentsOfURL:file_url]
     var match = str.match(/(\s+)d=\"(.+?)\"(\s+)/)
@@ -47,9 +47,9 @@ var onRun = function (context) {
   var sel = selection[0],
       rect = [sel absoluteInfluenceRect],
       tmp_path = "/tmp/com.bomberstudios.sketch-commands/",
-      export_path;
+      export_path
 
   make_temp_folder()
-  var export_filename = export_path + "/" + [sel name] + ".svg";
+  var export_filename = export_path + "/" + [sel name] + ".svg"
   do_export()
 }

@@ -15,9 +15,9 @@ var onRun = function (context) {
   var doc = context.document
 
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_slices("pdf", null, doc);
+    com.bomberstudios.export_all_slices("pdf", null, doc)
   }
 }
 
@@ -30,21 +30,21 @@ var onRun = function (context) {
   var doc = context.document
 
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_slices("png", null, doc);
+    com.bomberstudios.export_all_slices("png", null, doc)
 
     // ZIP folder
     var task = [[NSTask alloc] init],
         file_basename = [doc displayName]).split('.sketch')[0],
-        argsArray = [NSArray arrayWithObjects:"-r", com.bomberstudios.isodate() + "-" + file_basename + ".zip", file_basename + "_export", nil];
+        argsArray = [NSArray arrayWithObjects:"-r", com.bomberstudios.isodate() + "-" + file_basename + ".zip", file_basename + "_export", nil]
 
-    [task setCurrentDirectoryPath:com.bomberstudios.getFileFolder(doc)];
-    [task setLaunchPath:"/usr/bin/zip"];
-    [task setArguments:argsArray];
-    [task launch];
+    [task setCurrentDirectoryPath:com.bomberstudios.getFileFolder(doc)]
+    [task setLaunchPath:"/usr/bin/zip"]
+    [task setArguments:argsArray]
+    [task launch]
 
-    com.bomberstudios.reveal_finder_in(com.bomberstudios.getFileFolder(doc) + com.bomberstudios.isodate() + "-" + file_basename + ".zip");
+    com.bomberstudios.reveal_finder_in(com.bomberstudios.getFileFolder(doc) + com.bomberstudios.isodate() + "-" + file_basename + ".zip")
   }
 }
 
@@ -58,12 +58,12 @@ var onRun = function (context) {
   var doc = context.document
 
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
     var file_path = com.bomberstudios.getFileFolder(doc),
-        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path];
+        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path]
 
-    com.bomberstudios.export_all_slices("png", export_to_path, doc);
+    com.bomberstudios.export_all_slices("png", export_to_path, doc)
   }
 }
 
@@ -76,9 +76,9 @@ var onRun = function (context) {
   var doc = context.document
 
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_slices("png", null, doc);
+    com.bomberstudios.export_all_slices("png", null, doc)
   }
 }
 
@@ -91,9 +91,9 @@ var onRun = function (context) {
   var doc = context.document
 
   if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command");
+    alert("You need to save your document to use this command")
   } else {
-    com.bomberstudios.export_all_slices("svg", null, doc);
+    com.bomberstudios.export_all_slices("svg", null, doc)
   }
 }
 
@@ -105,7 +105,7 @@ var onRun = function (context) {
 var onRun = function (context) {
   var doc = context.document
 
-  [doc saveDocument:doc];
+  [doc saveDocument:doc]
 
-  com.bomberstudios.export_all_slices("png", null, doc);
+  com.bomberstudios.export_all_slices("png", null, doc)
 }

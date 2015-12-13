@@ -19,7 +19,7 @@ var onRun = function (context) {
       desktop_path = [paths objectAtIndex:0],
       export_filename,
       modFlags = [NSEvent modifierFlags],
-      overwrite;
+      overwrite
 
   if (modFlags & [NSAlternateKeyMask]) {
     overwrite = false
@@ -28,14 +28,14 @@ var onRun = function (context) {
   }
 
   if(overwrite){
-    export_filename = desktop_path + "/" + [sel name] + ".pdf";
+    export_filename = desktop_path + "/" + [sel name] + ".pdf"
   } else {
-    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".pdf";
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".pdf"
   }
 
   function do_export(){
-    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
-    com.bomberstudios.reveal_finder_in(export_filename);
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename]
+    com.bomberstudios.reveal_finder_in(export_filename)
   }
 
   do_export()
@@ -55,7 +55,7 @@ var onRun = function (context) {
       desktop_path = [paths objectAtIndex:0],
       export_filename,
       modFlags = [NSEvent modifierFlags],
-      overwrite;
+      overwrite
 
   if (modFlags & [NSAlternateKeyMask]) {
     overwrite = false
@@ -64,14 +64,14 @@ var onRun = function (context) {
   }
 
   if(overwrite){
-    export_filename = desktop_path + "/" + [sel name] + ".png";
+    export_filename = desktop_path + "/" + [sel name] + ".png"
   } else {
-    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".png";
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".png"
   }
 
   function do_export(){
-    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
-    com.bomberstudios.reveal_finder_in(export_filename);
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename]
+    com.bomberstudios.reveal_finder_in(export_filename)
   }
 
   do_export()
@@ -91,7 +91,7 @@ var onRun = function (context) {
       desktop_path = [paths objectAtIndex:0],
       export_filename,
       modFlags = [NSEvent modifierFlags],
-      overwrite;
+      overwrite
 
   if (modFlags & [NSAlternateKeyMask]) {
     overwrite = false
@@ -100,14 +100,14 @@ var onRun = function (context) {
   }
 
   if(overwrite){
-    export_filename = desktop_path + "/" + [sel name] + ".svg";
+    export_filename = desktop_path + "/" + [sel name] + ".svg"
   } else {
-    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".svg";
+    export_filename = desktop_path + "/" + [sel name] + "-" + (new Date().getTime()) + ".svg"
   }
 
   function do_export(){
-    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename];
-    com.bomberstudios.reveal_finder_in(export_filename);
+    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:export_filename]
+    com.bomberstudios.reveal_finder_in(export_filename)
   }
 
   do_export()

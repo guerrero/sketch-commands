@@ -27,6 +27,6 @@ var onRun = function (context) {
       [frame2 setY: [frame y] + [frame height]/2 - [frame2 height]/2]
     }
   } else {
-    alert("You need to select at least one layer.");
+    alert("You need to select at least one layer.")
   }
 }

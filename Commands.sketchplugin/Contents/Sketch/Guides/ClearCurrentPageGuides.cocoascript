@@ -13,8 +13,8 @@ var onRun = function (context) {
 
   Number.prototype.times = function(callback){
     for (var s = this - 1; s >= 0; s--){
-      callback.call(this,s);
-    };
+      callback.call(this,s)
+    }
   }
 
   // Make sure rulers are visible
@@ -23,14 +23,14 @@ var onRun = function (context) {
   }
 
   var horizontal_guides = [[doc currentPage] horizontalRulerData],
-      vertical_guides = [[doc currentPage] verticalRulerData];
+      vertical_guides = [[doc currentPage] verticalRulerData]
 
   // Remove horizontal guides
   [horizontal_guides numberOfGuides].times(function(){
-    [horizontal_guides removeGuideAtIndex:0];
+    [horizontal_guides removeGuideAtIndex:0]
   })
   // Remove vertical guides
   [vertical_guides numberOfGuides].times(function(){
-    [vertical_guides removeGuideAtIndex:0];
+    [vertical_guides removeGuideAtIndex:0]
   })
 }

@@ -12,7 +12,7 @@ var onRun = function (context) {
 
     var baseColor = selection[0].style().borders().firstObject().color()
     var hexValue = "#" + baseColor.hexValue()
-    var color = NSArray.arrayWithObjects(hexValue);
-    pasteboard.writeObjects(color);
+    var color = NSArray.arrayWithObjects(hexValue)
+    pasteboard.writeObjects(color)
   }
 }
