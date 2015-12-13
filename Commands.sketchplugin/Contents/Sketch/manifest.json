@@ -130,10 +130,10 @@
       "script": "Guides/CreateGuidesWithArguments.cocoascripts"
     },
     {
-      "name": "Offset",
-      "identifier": "offset",
+      "name": "Offset…",
+      "identifier": "offset…",
       "shortcut": "",
-      "script": "Offset/Offset.cocoascript"
+      "script": "Offset/OffsetWithArguments.cocoascript"
     },
     {
       "name": "Duplicate Current Page",
@@ -413,7 +413,7 @@
       {
         "title": "Offset",
         "items": [
-          "offset"
+          "offset…"
         ]
       },
       {

@@ -9,6 +9,9 @@
  * @param {Object} context - The current Sketch app context.
  */
 var onRun = function (context) {
+  var doc = context.document
+  var selection = context.selection
+
   if ([selection count] > 0) {
     var offset = [doc askForUserInput:"Offset distance (in pixels):" initialValue:"0"]
 
