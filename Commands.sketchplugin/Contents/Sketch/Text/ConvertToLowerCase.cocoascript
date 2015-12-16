@@ -1,22 +1,15 @@
 /**
- * @author Ale Muñoz
- * @copyright 2015 Ale Muñoz. All rights reserved.
- */
-
-/**
  * Convert selected text to lower case
  * @function
  * @param {Object} context - The current Sketch app context.
  */
 var onRun = function (context) {
-  var selection = selection || context.selection
+  var selection = context.selection
+  var selectionCount = selection.count()
 
-  for (var i = 0; i < [selection count]; i++) {
-    var s = [selection objectAtIndex:i]
+  for (var i = 0; i < selectionCount; i++) {
+    var layer = selection.objectAtIndex(i)
 
-    if([s class] === MSTextLayer){
-      var new_text = [s stringValue].toLowerCase()
-      [s setStringValue:new_text]
-    }
+    if (layer.class() === MSTextLayer) layer.makeLowercase(null)
   }
 }
