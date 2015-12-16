@@ -19,7 +19,7 @@ var regex = {
   pluginScript: /.cocoascript$/,
   commandHandler: /\/\*\*[\s\S]*?\*\/[\n\s]+(?:var\s+(on.*?)\s*=\s*function\(context\))/g,
   shortcutLine: /(?:@shortcut\s+)(.*?)\n/,
-  shortcutValidation: /^(?:(?!(?:.*ctrl){2})(?!(?:.*cmd){2})(?!(?:.*shift){2})(ctrl|cmd|shift)\s)*[a-z0-9]$/
+  shortcutValidation: /^(?:(?!(?:.*ctrl){2})(?!(?:.*cmd){2})(?!(?:.*shift){2})(?!(?:.*alt){2})(ctrl|cmd|shift|alt)\s)*[a-z0-9.,\/;[\]'`=-\\]$/
 }
 
 function getManifest(pluginDir) {
