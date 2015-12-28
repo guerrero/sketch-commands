@@ -214,6 +214,12 @@
       "script": "Position/SwapPositions.cocoascript"
     },
     {
+      "name": "Preview In Browser",
+      "identifier": "previewinbrowser",
+      "shortcut": "cmd shift .",
+      "script": "Preview/PreviewInBrowser.cocoascript"
+    },
+    {
       "name": "Round Border Radius",
       "identifier": "roundborderradius",
       "shortcut": "",
@@ -437,6 +443,12 @@
           "moveup100px",
           "setposition…",
           "swappositions"
+        ]
+      },
+      {
+        "title": "Preview",
+        "items": [
+          "previewinbrowser"
         ]
       },
       {
