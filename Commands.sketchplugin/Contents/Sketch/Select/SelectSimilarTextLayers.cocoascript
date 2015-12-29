@@ -1,0 +1,32 @@
+/**
+ * @author Florian Schulz
+ * @copyright 2014 Florian Schulz. MIT License.
+ * @shortcut cmd ctrl shift t
+ */
+
+function selectLayersByTextStyle(doc, textStyle, scope) {
+  var predicate = NSPredicate.predicateWithFormat("(style.textStyle != NULL) && (FUNCTION(style.textStyle, 'isEqualForSync:asPartOfSymbol:', %@, nil) == YES)", textStyle)
+  var queryResult = scope.filteredArrayUsingPredicate(predicate)
+  doc.currentPage().selectLayers(queryResult)
+
+  return queryResult
+}
+
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  if (selection.count() === 1 && selection[0].isKindOfClass(MSTextLayer)) {
+      var selectedLayer = selection[0]
+
+      doc.showMessage("Looking for similar text layers…")
+
+      var scope = doc.currentPage().children()
+      var textStyle = selectedLayer.style().textStyle()
+      var results = selectLayersByTextStyle(doc, textStyle, scope)
+
+      doc.showMessage(results.count() + " text layers selected")
+  } else {
+     doc.showMessage("Please select a text layer.")
+  }
+}
