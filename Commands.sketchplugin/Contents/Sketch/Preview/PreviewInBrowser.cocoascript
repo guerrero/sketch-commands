@@ -15,7 +15,7 @@ var onRun = function(context) {
   var filename = NSTemporaryDirectory() + artboardname + ".png"
   [doc saveArtboardOrSlice:artboard toFile: filename]
 
-  var someContent = NSString.stringWithString_("<html><head><meta charset='UTF-8'></head><body style='text-align: center    margin: 0 padding: 0 background: #" + [[artboard backgroundColor] hexValue] + "'> <img src='./" + artboardname + ".png' center top no-repeat'></body></html>")
+  var someContent = NSString.stringWithString_("<html><head><meta charset='UTF-8'></head><body style='text-align: center; margin: 0 auto; padding: 0; background: #" + [[artboard backgroundColor] hexValue] + "'> <img src='./" + artboardname + ".png' center top no-repeat'></body></html>")
   var filepath = NSTemporaryDirectory() + artboardname + ".html"
   someContent.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(filepath, true)
 
