@@ -3,53 +3,58 @@
  * @copyright 2015 Ale Muñoz. All rights reserved.
  */
 
-@import 'library/common.js'
+@import '../library/common.js'
 
 /**
  * Copy SVG Path
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-
-  var doc = context.document
+var onRun = function(context) {
   var selection = context.selection
 
-  function make_temp_folder(){
-    var guid = [[NSProcessInfo processInfo] globallyUniqueString]
-    var path = tmp_path + guid
-    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil]
-    export_path = path
+  function makeTempFolder(tempPath) {
+    var guid = NSProcessInfo.processInfo().globallyUniqueString()
+    var path = tempPath + guid
+
+    NSFileManager.defaultManager().createDirectoryAtPath_withIntermediateDirectories_attributes_error(path, true, nil, nil)
+    return path
   }
-  function copy_text(txt){
-    var pasteBoard = [NSPasteboard generalPasteboard]
-    [pasteBoard declareTypes:[NSArray arrayWithObject:NSPasteboardTypeString] owner:nil]
-    [pasteBoard setString:txt forType:NSPasteboardTypeString]
+
+  function copyText(txt) {
+    var pasteBoard = NSPasteboard.generalPasteboard()
+
+    pasteBoard.declareTypes_owner(NSArray.arrayWithObject(NSPasteboardTypeString), nil)
+    pasteBoard.setString_forType(txt, NSPasteboardTypeString)
   }
-  function do_export(){
+
+  function doExport(rect, filename) {
     var doc = context.document
-    log("do_export")
-    var slice = [GKRect rectWithRect:rect]
-    [doc saveArtboardOrSlice:slice toFile:export_filename]
-    var file_url = [NSURL fileURLWithPath:export_filename]
-    var str = [[NSString alloc] initWithContentsOfURL:file_url]
-    var match = str.match(/(\s+)d=\"(.+?)\"(\s+)/)
-    log(match)
-    if(match){
-      var path_string = match[0].trim()
-      copy_text(path_string)
-      [doc showMessage:"SVG Path copied to clipboard"]
+    var slice = GKRect.rectWithRect(rect)
+    var fileURL
+    var str
+    var match
+
+    doc.saveArtboardOrSlice_toFile(slice, filename)
+
+    fileURL = NSURL.fileURLWithPath(filename)
+    str = NSString.alloc().initWithContentsOfURL(fileURL)
+    match = str.match(/(\s+)d=\'(.+?)\'(\s+)/)
+
+    if (match) {
+      var pathString = match[0].trim()
+      copyText(pathString)
+      doc.showMessage('SVG Path copied to clipboard')
     } else {
-      [doc showMessage:"The selected element is not a path"]
+      doc.showMessage('The selected element is not a path')
     }
   }
 
-  var sel = selection[0],
-      rect = [sel absoluteInfluenceRect],
-      tmp_path = "/tmp/com.bomberstudios.sketch-commands/",
-      export_path
+  var sel = selection[0]
+  var rect = sel.absoluteInfluenceRect()
+  var tempPath = '/tmp/com.bomberstudios.sketch-commands/'
+  var exportPath = makeTempFolder(tempPath)
+  var filename = exportPath + '/' + sel.name() + '.svg'
 
-  make_temp_folder()
-  var export_filename = export_path + "/" + [sel name] + ".svg"
-  do_export()
+  doExport(rect, filename)
 }

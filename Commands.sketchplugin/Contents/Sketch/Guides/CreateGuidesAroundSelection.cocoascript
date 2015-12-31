@@ -8,33 +8,33 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
   var selection = context.selection
 
   // Make sure rulers are visible
-  if ([doc isRulersVisible] == 0) {
-    [doc toggleRulers]
+  if (doc.isRulersVisible() == 0) {
+    doc.toggleRulers()
   }
 
-  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
-  if (current_artboard != null && [selection count] > 0) {
-    var horizontal_guides = [current_artboard horizontalRulerData],
-        vertical_guides = [current_artboard verticalRulerData]
+  var currentArtboard = doc.currentPage().currentArtboard() || doc.currentPage()
+  if (currentArtboard != null && selection.count() > 0) {
+    var horizontalGuides = currentArtboard.horizontalRulerData()
+    var verticalGuides = currentArtboard.verticalRulerData()
 
-    for (var i = 0; i < [selection count]; i++) {
-      var layer = [selection objectAtIndex:i],
-          pos_x  = [[layer absoluteRect] rulerX]
-          pos_y  = [[layer absoluteRect] rulerY],
-          width  = [[layer frame] width],
-          height = [[layer frame] height]
+    for (var i = 0; i < selection.count(); i++) {
+      var layer = selection.objectAtIndex(i)
+      var posX = layer.absoluteRect().rulerX()
+      var posY = layer.absoluteRect().rulerY()
+      var width = layer.frame().width()
+      var height = layer.frame().height()
 
-      [horizontal_guides addGuideWithValue:pos_x]
-      [horizontal_guides addGuideWithValue:pos_x + width]
-      [vertical_guides   addGuideWithValue:pos_y]
-      [vertical_guides   addGuideWithValue:pos_y + height]
+      horizontalGuides.addGuideWithValue(posX)
+      horizontalGuides.addGuideWithValue(posX + width)
+      verticalGuides.addGuideWithValue(posY)
+      verticalGuides.addGuideWithValue(posY + height)
     }
   } else {
-    [doc showMessage:"You need to select at least one layer"]
+    doc.showMessage('You need to select at least one layer')
   }
 }

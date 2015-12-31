@@ -8,33 +8,34 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = doc || context.document
-  var selection = selection || context.selection
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
 
   function toJSArray(arr) {
-    var len = [arr count],
-        res = []
-    while(len--){
-      res.push(arr[len])
+    var length = arr.count()
+    var res = []
+
+    while (length--) {
+      res.push(arr[length])
     }
     return res
   }
 
-  var spacing = [[doc askForUserInput:"Spacing" ofType:1 initialValue:"10"] integerValue]
+  var spacing = doc.askForUserInput_ofType_initialValue('Spacing', 1, 10).integerValue()
 
-  function sort_by_position(a,b){
-    return [[a frame] left] - [[b frame] left]
+  function sortByPosition(a, b) {
+    return a.frame().left() - b.frame().left()
   }
 
-  var sorted_selection = toJSArray(selection).sort(sort_by_position),
-      first_element = sorted_selection[0],
-      left_position = [[first_element frame] left]
+  var sortedSelection = toJSArray(selection).sort(sortByPosition)
+  var firstElement = sortedSelection[0]
+  var leftPosition = firstElement.frame().left()
 
-      var spacing = [[doc askForUserInput:[first_element frame] ofType:1 initialValue:"10"] integerValue]
+  sortedSelection.forEach(function(layer) {
+    var layerFrame = layer.frame()
 
-  sorted_selection.forEach(function(layer){
-    [[layer frame] setX:left_position]
-    left_position = [[layer frame] left] + [[layer frame] width] + spacing
+    layerFrame.setX(leftPosition)
+    leftPosition = layerFrame.left() + layerFrame.width() + spacing
   })
 }

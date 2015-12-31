@@ -3,18 +3,20 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var selection = context.selection
   var selectionCount = selection.count()
 
   function sentenceCase(string) {
     var sentenceRegExp = /(^|\.\s+)([a-z])/g
 
+    function sentenceCaseReplacer(match, _, letter) {
+      return match.replace(letter, letter.toUpperCase())
+    }
+
     return string
       .toLowerCase()
-      .replace(sentenceRegExp, function sentenceCaseReplacer(match, _, letter) {
-        return match.replace(letter, letter.toUpperCase())
-      })
+      .replace(sentenceRegExp, sentenceCaseReplacer)
   }
 
   for (var i = 0; i < selectionCount; i++) {
@@ -22,6 +24,7 @@ var onRun = function (context) {
 
     if (layer.class() === MSTextLayer) {
       var sentenceCaseLayerValue = sentenceCase(layer.stringValue())
+
       layer.replaceTextPreservingAttributeRanges(sentenceCaseLayerValue)
     }
   }

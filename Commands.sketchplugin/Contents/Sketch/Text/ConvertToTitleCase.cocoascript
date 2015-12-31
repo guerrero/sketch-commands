@@ -3,18 +3,20 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var selection = context.selection
   var selectionCount = selection.count()
 
   function titleCase(string) {
     var titleRegExp = /\b([a-z])[A-Za-z]*\b/g
 
+    function titleCaseReplacer(match, letter) {
+      return letter.toUpperCase() + match.substr(1)
+    }
+
     return string
       .toLowerCase()
-      .replace(titleRegExp, function titleCaseReplacer(match, letter) {
-        return letter.toUpperCase() + match.substr(1)
-      })
+      .replace(titleRegExp, titleCaseReplacer)
   }
 
   for (var i = 0; i < selectionCount; i++) {
@@ -22,6 +24,7 @@ var onRun = function (context) {
 
     if (layer.class() === MSTextLayer) {
       var titleCaseString = titleCase(layer.stringValue())
+
       layer.replaceTextPreservingAttributeRanges(titleCaseString)
     }
   }

@@ -9,16 +9,14 @@ var onRun = function(context) {
   var doc = context.document
   var artboard = doc.currentPage().currentArtboard() || doc.currentPage()
 
-  if (artboard.class() == "MSPage") return doc.showMessage("You must create almost an artboard.")
+  if (artboard.class() == 'MSPage') return doc.showMessage('You must create almost an artboard.')
 
-  var artboardname = artboard.name()
-  var filename = NSTemporaryDirectory() + artboardname + ".png"
-  [doc saveArtboardOrSlice:artboard toFile: filename]
+  var artboardName = artboard.name()
+  var filename = NSTemporaryDirectory() + artboardName + '.png'
+  var HTMLString = NSString.stringWithString_('<html><head><meta charset="UTF-8"></head><body style="text-align: center; margin: 0 auto; padding: 0; background: #' + artboard.backgroundColor().hexValue() + '"> <img src="./' + artboardName + '.png" center top no-repeat"></body></html>')
+  var filepath = NSTemporaryDirectory() + artboardName + '.html'
 
-  var someContent = NSString.stringWithString_("<html><head><meta charset='UTF-8'></head><body style='text-align: center; margin: 0 auto; padding: 0; background: #" + [[artboard backgroundColor] hexValue] + "'> <img src='./" + artboardname + ".png' center top no-repeat'></body></html>")
-  var filepath = NSTemporaryDirectory() + artboardname + ".html"
-  someContent.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(filepath, true)
-
-  var file = NSURL.fileURLWithPath(filepath)
+  doc.saveArtboardOrSlice_toFile(artboard, filename)
+  HTMLString.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(filepath, true)
   NSWorkspace.sharedWorkspace().openFile(filepath)
 }

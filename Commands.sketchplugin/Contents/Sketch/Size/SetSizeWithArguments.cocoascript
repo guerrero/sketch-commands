@@ -8,28 +8,30 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
   var selection = context.selection
-  var height = 100,
-      width = 100,
-      size = ""
+  var height = 100
+  var width = 100
+  var size = ''
 
-  if ([selection count] === 1) {
-    var layer = selection[0],
-        frame = [layer frame],
-        width = [frame width],
-        height = [frame height]
+  if (selection.count() === 1) {
+    var layer = selection[0]
+    var frame = layer.frame()
+    var width = frame.width()
+    var height = frame.height()
   }
-  size = [doc askForUserInput:"Size (w,h pair)" initialValue:width + "," + height]
 
-  var w = eval(size.split(",")[0])
-  var h = eval(size.split(",")[1])
+  size = doc.askForUserInput_initialValue('Size (w,h pair)', width + ',' + height)
 
-  for (var i=0; i < [selection count]; i++){
-    var layer = [selection objectAtIndex:i],
-        frame = [layer frame]
-    [frame setWidth:Math.round(w)]
-    [frame setHeight:Math.round(h)]
+  var w = eval(size.split(',')[0])
+  var h = eval(size.split(',')[1])
+
+  for (var i = 0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+    var frame = layer.frame()
+
+    frame.setWidth(Math.round(w))
+    frame.setHeight(Math.round(h))
   }
 }

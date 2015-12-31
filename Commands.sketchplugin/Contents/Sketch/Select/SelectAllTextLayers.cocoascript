@@ -8,17 +8,18 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var page = [doc currentPage],
-      layers = [page children]
+var onRun = function(context) {
+  var doc = context.document
+  var page = doc.currentPage()
+  var layers = page.children()
 
-  [page deselectAllLayers]
+  page.deselectAllLayers()
 
-  var loop = [layers objectEnumerator]
+  var loop = layers.objectEnumerator()
 
-  while (layer = [loop nextObject]) {
-    if([layer className] == "MSTextLayer") {
-      [layer select:true byExpandingSelection:true]
+  while (layer = loop.nextObject()) {
+    if (layer.className() == 'MSTextLayer') {
+      layer.select_byExpandingSelection(true, true)
     }
   }
 }

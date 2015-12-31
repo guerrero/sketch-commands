@@ -8,15 +8,14 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
   var selection = context.selection
 
-  if (selection.count() === 2){
-
+  if (selection.count() === 2) {
     var firstObject = selection[0]
     var secondObject = selection[1]
-    var firstPosition  = {
+    var firstPosition = {
       left: firstObject.frame().left(),
       top: firstObject.frame().top()
     }
@@ -30,8 +29,7 @@ var onRun = function (context) {
 
     secondObject.frame().setX(firstPosition.left)
     secondObject.frame().setY(firstPosition.top)
-
   } else {
-    doc.showMessage("You need to select exactly two objects")
+    doc.showMessage('You need to select exactly two objects')
   }
 }

@@ -3,7 +3,7 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var selection = context.selection
   var selectionCount = selection.count()
 

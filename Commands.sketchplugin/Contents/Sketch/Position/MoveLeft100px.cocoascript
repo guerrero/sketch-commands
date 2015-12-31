@@ -9,26 +9,25 @@
  * @param {Object} context - The current Sketch app context.
  */
 function _move(element, direction, amount) {
-  switch(direction) {
-    case 'up':
-      var y = element.frame().y()
-      element.frame().setY(y - amount)
-      break
-    case 'down':
-      var y = element.frame().y()
-      element.frame().setY(y + amount)
-      break
-    case 'left':
-      var x = element.frame().x()
-      element.frame().setX(x - amount)
-      break
-    case 'right':
-      var x = element.frame().x()
-      element.frame().setX(x + amount)
-      break
+  switch (direction) {
+  case 'up':
+    var y = element.frame().y()
+    element.frame().setY(y - amount)
     break
-    default:
-      doc.showMessage("Error in _move function")
+  case 'down':
+    var y = element.frame().y()
+    element.frame().setY(y + amount)
+    break
+  case 'left':
+    var x = element.frame().x()
+    element.frame().setX(x - amount)
+    break
+  case 'right':
+    var x = element.frame().x()
+    element.frame().setX(x + amount)
+    break
+  default:
+    doc.showMessage('Error in _move function')
     break
   }
 }
@@ -38,8 +37,7 @@ function _move(element, direction, amount) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = context.document
+var onRun = function(context) {
   var selection = context.selection
 
   for (var i = 0; i < selection.count(); i++) {

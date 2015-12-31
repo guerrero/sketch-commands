@@ -3,20 +3,20 @@
  * @copyright 2015 Ale Muñoz. All rights reserved.
  */
 
-@import 'library/common.js'
+@import '../library/common.js'
 
 /**
  * Removes current page only if it isn't the last in the current document
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
+  var doc = context.document
+  var pages = context.document.pages()
 
-  var doc = doc || context.document
-
-  if([[doc pages] count] == 1) {
-    alert("You can’t remove the last page on your document.")
+  if (pages.count() === 1) {
+    doc.showMessage('You can’t remove the last page on your document')
   } else {
-    [doc removePage:[doc currentPage]]
+    doc.removePage(doc.currentPage())
   }
 }

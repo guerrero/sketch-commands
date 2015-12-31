@@ -8,15 +8,16 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var page = [doc currentPage],
-      current_artboard = [page currentArtboard]
+var onRun = function(context) {
+  var doc = context.document
+  var page = doc.currentPage()
+  var currentArtboard = page.currentArtboard()
 
-  [page deselectAllLayers]
+  page.deselectAllLayers()
 
-  if (current_artboard != null) {
-    [current_artboard select:true byExpandingSelection:true]
+  if (currentArtboard != null) {
+    currentArtboard.select_byExpandingSelection(true, true)
   } else {
-    alert("You need to select at least one layer from an artboard")
+    doc.showMessage('You need to select at least one layer from an artboard')
   }
 }

@@ -5,7 +5,7 @@
  */
 
 function selectLayersByTextStyle(doc, textStyle, scope) {
-  var predicate = NSPredicate.predicateWithFormat("(style.textStyle != NULL) && (FUNCTION(style.textStyle, 'isEqualForSync:asPartOfSymbol:', %@, nil) == YES)", textStyle)
+  var predicate = NSPredicate.predicateWithFormat('(style.textStyle != NULL) && (FUNCTION(style.textStyle, \'isEqualForSync:asPartOfSymbol:\', %@, nil) == YES)', textStyle)
   var queryResult = scope.filteredArrayUsingPredicate(predicate)
   doc.currentPage().selectLayers(queryResult)
 
@@ -17,16 +17,16 @@ var onRun = function(context) {
   var selection = context.selection
 
   if (selection.count() === 1 && selection[0].isKindOfClass(MSTextLayer)) {
-      var selectedLayer = selection[0]
+    var selectedLayer = selection[0]
 
-      doc.showMessage("Looking for similar text layers…")
+    doc.showMessage('Looking for similar text layers…')
 
-      var scope = doc.currentPage().children()
-      var textStyle = selectedLayer.style().textStyle()
-      var results = selectLayersByTextStyle(doc, textStyle, scope)
+    var scope = doc.currentPage().children()
+    var textStyle = selectedLayer.style().textStyle()
+    var results = selectLayersByTextStyle(doc, textStyle, scope)
 
-      doc.showMessage(results.count() + " text layers selected")
+    doc.showMessage(results.count() + ' text layers selected')
   } else {
-     doc.showMessage("Please select a text layer.")
+    doc.showMessage('Please select a text layer.')
   }
 }

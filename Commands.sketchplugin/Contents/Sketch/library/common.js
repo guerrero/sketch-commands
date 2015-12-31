@@ -1,179 +1,178 @@
 var com = {}
 
 com.bomberstudios = {
-  alert: function (msg, title) {
-    if (title == undefined) { title = "Whoops" }
-    var app = [NSApplication sharedApplication]
-    [app displayDialog:msg withTitle:title]
+  createFolder: function(path) {
+    var fileManager = NSFileManager.defaultManager()
+    fileManager.createDirectoryAtPath_withIntermediateDirectories_attributes_error(path, true, nil, nil)
   },
-  create_folder: function(path) {
-    var file_manager = [NSFileManager defaultManager]
-    [file_manager createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil]
+  getFileFolder: function(doc) {
+    var fileURL = doc.fileURL()
+    var filepath = fileURL.path()
+    var fileFolder = filepath.split(doc.displayName())[0]
+
+    return fileFolder
   },
-  getFileFolder: function(doc){
-    var file_url = [doc fileURL],
-        file_path = [file_url path],
-        file_folder = file_path.split([doc displayName])[0]
-    return file_folder
+  getExportPath: function(doc) {
+    var fileFolder = com.bomberstudios.getFileFolder(doc)
+    var exportFolder = fileFolder + (doc.displayName()).split('.sketch')[0] + '_export/'
+
+    return exportFolder
   },
-  getExportPath: function(doc){
-    var file_folder = com.bomberstudios.getFileFolder(doc),
-        export_folder = file_folder + ([doc displayName]).split('.sketch')[0] + "_export/"
-    return export_folder
-  },
-  export_all_slices: function(format,path, doc){
-    log("com.bomberstudios.export_all_slices()")
-    if (path == undefined) {
+  exportAllSlices: function(format, path, doc) {
+    if (typeof path === 'undefined') {
       path = com.bomberstudios.getExportPath(doc)
     }
 
-    function export_loop() {
-      var pages = [doc pages]
-      for(var i=0; i < [pages count]; i++){
-        var page = [pages objectAtIndex:i]
-        [doc setCurrentPage:page]
-        var pagename = [[doc currentPage] name],
-            layers = [[doc currentPage] exportableLayers]
+    function exportLoop() {
+      var pages = doc.pages()
+      for (var i = 0; i < pages.count(); i++) {
+        var page = pages.objectAtIndex(i)
+        doc.setCurrentPage(page)
+        var pagename = doc.currentPage().name()
+        var layers = doc.currentPage().exportableLayers()
 
-        for (var j=0; j < [layers count]; j++) {
-          var slice = [layers objectAtIndex:j]
-          [doc saveArtboardOrSlice:slice toFile:path + "/" + pagename + "/" + [slice name] + "." + format]
+        if (layers.count() === 0) {
+          doc.showMessage('There is no available slices or exportable layers to export')
+          return false
+        }
+
+        for (var j = 0; j < layers.count(); j++) {
+          var slice = layers.objectAtIndex(j)
+          doc.saveArtboardOrSlice_toFile(slice, path + '/' + pagename + '/' + slice.name() + '.' + format)
+        }
+        return true
+      }
+    }
+
+    exportLoop()
+  },
+  exportAllArtboards: function(format, path, doc){
+    if (typeof path === 'undefined') {
+      path = com.bomberstudios.getExportPath(doc)
+    }
+
+    function exportLoop() {
+      var pages = doc.pages()
+      for (var i = 0; i < pages.count(); i++){
+        var page = pages.objectAtIndex(i)
+        doc.setCurrentPage(page)
+        var pagename = doc.currentPage().name()
+        var layers = doc.currentPage().artboards()
+
+        log('Exporting page ' + (i+1) + '/' + pages.count() + ' (' + pagename + ') with ' + layers.count() + ' artboards')
+
+        for (var j = 0; j < layers.count(); j++) {
+          var artboard = layers.objectAtIndex(j)
+          doc.saveArtboardOrSlice_toFile(artboard, path + '/' + pagename + '/' + artboard.name() + '.' + format)
         }
       }
     }
 
-    export_loop()
+    exportLoop()
   },
-  export_all_artboards: function(format,path, doc){
-    if (path == undefined) {
-      path = com.bomberstudios.getExportPath(doc)
-    }
-    log("com.bomberstudios.export_all_artboards() to " + path)
-
-    function export_loop() {
-      var pages = [doc pages]
-      for(var i=0; i < [pages count]; i++){
-        var page = [pages objectAtIndex:i]
-        [doc setCurrentPage:page]
-        var pagename = [[doc currentPage] name],
-            layers = [[doc currentPage] artboards]
-
-        log("Exporting page " + (i+1) + "/" + [pages count] + " (" + pagename + ") with " + [layers count] + " artboards")
-
-        for (var j=0; j < [layers count]; j++) {
-          var artboard = [layers objectAtIndex:j]
-          [doc saveArtboardOrSlice:artboard toFile:path + "/" + pagename + "/" + [artboard name] + "." + format]
-        }
-      }
-    }
-
-    export_loop()
-  },
-  export_item: function(item,format,path, doc){
+  exportItem: function(item, format, path, doc) {
     var sel = item
-    var rect = [sel absoluteInfluenceRect]
-    [doc saveArtboardOrSlice:[GKRect rectWithRect:rect] toFile:path + "/" + [sel name] + "." + format]
+    var rect = sel.absoluteInfluenceRect()
+    doc.saveArtboardOrSlice_toFile(GKRect.rectWithRect(rect), path + '/' + sel.name() + '.' + format)
   },
-  export_item_to_desktop: function(item,format, doc){
-    var desktop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true) objectAtIndex:0]
-    com.bomberstudios.export_item(item,format,desktop, doc)
+  exportItemToDesktop: function(item, format, doc) {
+    var desktop = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, true).objectAtIndex(0)
+    com.bomberstudios.exportItem(item, format, desktop, doc)
   },
-  padNumber: function(num){
-    num = num.toString()
-    if (num.length < 2) {
-      num = "0" + num
+  padNumber: function(num) {
+    var result = num.toString()
+    if (result.length < 2) {
+      result = '0' + num
     }
-    return num
+    return result
   },
-  isodate: function(){
+  isodate: function() {
     var now = new Date()
     var year = now.getFullYear()
-    var month = com.bomberstudios.padNumber((now.getMonth() + 1))
+    var month = com.bomberstudios.padNumber(now.getMonth() + 1)
     var day = com.bomberstudios.padNumber(now.getDate())
     var hour = com.bomberstudios.padNumber(now.getHours())
     var minute = com.bomberstudios.padNumber(now.getMinutes())
     return year + month + day + hour + minute
   },
-  selection_count_is: function(min){
-    var min = min || 1,
-        title = "Whoops"
-    if ([selection count] < min) {
-      if([selection count] === 0) {
-        title = "Nihilism alert"
+  selectionCountIs: function(min) {
+    var min = min || 1
+    var title = 'Whoops'
+
+    if (selection.count() < min) {
+      if (selection.count() === 0) {
+        title = 'Nihilism alert'
       }
-      alert("You need to select at least " + number_to_words(min) + " object" + (min === 1 ? '' : 's') + ", but you selected " + number_to_words([selection count]) + ".", title)
+      doc.showMessage('You need to select at least ' + numberToWords(min) + ' object' + (min === 1 ? '' : 's') + ', but you selected ' + numberToWords(selection.count()) + '.', title)
       return false
-    } else {
-      return true
+    }
+
+    return true
+  },
+  numberToWords: function(num) {
+    switch (num) {
+    case 0:
+      return 'none'
+    case 1:
+      return 'one'
+    case 2:
+      return 'two'
+    case 3:
+      return 'three'
+    case 4:
+      return 'four'
+    default:
+      return num
     }
   },
-  number_to_words: function(num){
-    switch (num){
-      case 0:
-        return 'none'
-      case 1:
-        return 'one'
-      case 2:
-        return 'two'
-      case 3:
-        return 'three'
-      case 4:
-        return 'four'
-      default:
-        return num
-    }
-  },
-  open_finder_in: function(path) {
-    var open_finder = [[NSTask alloc] init],
-        open_finder_args = [NSArray arrayWithObjects:".", nil]
+  openFinderIn: function(path) {
+    var openFinder = NSTask.alloc().init()
+    var openFinderArgs = NSArray.arrayWithObjects('.', nil)
 
-    [open_finder setCurrentDirectoryPath:path]
-    [open_finder setLaunchPath:"/usr/bin/open"]
-    [open_finder setArguments:open_finder_args]
-    [open_finder launch]
+    openFinder.setCurrentDirectoryPath(path)
+    openFinder.setLaunchPath('/usr/bin/open')
+    openFinder.setArguments(openFinderArgs)
+    openFinder.launch()
   },
-  reveal_finder_in: function(path) {
-    var open_finder = [[NSTask alloc] init],
-        open_finder_args = [NSArray arrayWithObjects:"-R", path, nil]
+  revealFinderIn: function(path) {
+    var openFinder = NSTask.alloc().init()
+    var openFinderArgs = NSArray.arrayWithObjects('-R', path, nil)
 
-    [open_finder setLaunchPath:"/usr/bin/open"]
-    [open_finder setArguments:open_finder_args]
-    [open_finder launch]
+    openFinder.setLaunchPath('/usr/bin/open')
+    openFinder.setArguments(openFinderArgs)
+    openFinder.launch()
   }
 }
 
-Array.prototype.each = function(callback){
+Array.prototype.each = function(callback) {
   var count = 0
-  for (var i = 0; i < this.length; i++){
+  for (var i = 0; i < this.length; i++) {
     var el = this[i]
-    callback.call(this,el,count)
-    count++
+    callback.call(this, el, count)
+    count += 1
   }
 }
 
-Number.prototype.times = function(callback){
-  for (var s = this - 1; s >= 0; s--){
-    callback.call(this,s)
+Number.prototype.times = function(callback) {
+  for (var s = this - 1; s >= 0; s--) {
+    callback.call(this, s)
   }
 }
 
-Date.prototype.isoDate = function(){
-  var d = this
-  return d.year()
+Date.prototype.isoDate = function() {
+  return this.year()
 }
 
 function toJSArray(arr) {
-  var len = [arr count],
-      res = []
+  var len = arr.count()
+  var res = []
 
-  while(len--){
+  while (len--){
     res.push(arr[len])
   }
   return res
 }
 
-
 // Aliases
-alert = com.bomberstudios.alert
-number_to_words = com.bomberstudios.number_to_words
-selection_count_is = com.bomberstudios.selection_count_is
+numberToWords = com.bomberstudios.numberToWords
+selectionCountIs = com.bomberstudios.selectionCountIs

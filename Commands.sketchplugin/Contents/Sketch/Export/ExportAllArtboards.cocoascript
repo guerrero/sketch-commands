@@ -3,19 +3,19 @@
  * @copyright 2015 Ale Muñoz. All rights reserved.
  */
 
-@import 'library/common.js'
+@import '../library/common.js'
 
 /**
  * Export all artboards.
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
-    if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command")
+  if (doc.fileURL() == null) {
+    doc.showMessage('You need to save your document to use this command')
   } else {
-    com.bomberstudios.export_all_artboards("pdf", null, doc)
+    com.bomberstudios.exportAllArtboards('pdf', null, doc)
   }
 }
 
@@ -24,12 +24,12 @@ var onRun = function (context) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
-  if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command")
+  if (doc.fileURL() == null) {
+    doc.showMessage('You need to save your document to use this command')
   } else {
-    com.bomberstudios.export_all_artboards("png", null, doc)
+    com.bomberstudios.exportAllArtboards('png', null, doc)
   }
 }
 
@@ -38,18 +38,18 @@ var onRun = function (context) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
-  if ([doc fileURL] == null) {
-    alert("You need to save your document to use this command")
+  if (doc.fileURL() == null) {
+    doc.showMessage('You need to save your document to use this command')
   } else {
-    var file_path = com.bomberstudios.getFileFolder(doc),
-        export_to_path = [doc askForUserInput:"Export to…" ofType:2 initialValue:file_path]
+    var filePath = com.bomberstudios.getFileFolder(doc)
+    var destPath = doc.askForUserInput_ofType_initialValue('Export to…', 2, filePath)
 
-     if (0 === export_to_path.indexOf("file://")) {
-        export_to_path = export_to_path.substring(7)
-     }
+    if (destPath.indexOf('file://') === 0) {
+      destPath = destPath.substring(7)
+    }
 
-     com.bomberstudios.export_all_artboards("png", export_to_path, doc)
+    com.bomberstudios.exportAllArtboards('png', destPath, doc)
   }
 }

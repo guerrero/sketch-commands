@@ -8,8 +8,7 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = context.document
+var onRun = function(context) {
   var selection = context.selection
 
   for (var i = 0; i < selection.count(); i++) {

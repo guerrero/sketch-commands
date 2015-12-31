@@ -14,52 +14,45 @@ function checkSelectionIsNotEmpty(document, selection) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = doc || context.document
-  var selection = selection || context.selection
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
 
   checkSelectionIsNotEmpty(doc, selection)
 
-  for (var i = 0; i < [selection count]; i++) {
-    var layer = [selection objectAtIndex:i]
+  for (var i = 0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
     var exceptions = []
 
     if (layer.isKindOfClass(MSShapeGroup) && layer.layers().firstObject()) {
       if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
         return
       }
-      var frame = [layer frame]
-      var firstObject = [[layer layers] firstObject]
+      var frame = layer.frame()
+      var firstObject = layer.layers().firstObject()
 
-      radius =
-      [frame width] >= [frame height] ?
-      [frame height] / 2 :
-      [frame width] / 2
+      radius = frame.width() >= frame.height() ? frame.height() / 2 : frame.width() / 2
 
-      [firstObject setCornerRadiusFloat:Math.round(radius)]
-      [firstObject resetPointsBasedOnUserInteraction]
+      firstObject.setCornerRadiusFloat(Math.round(radius))
+      firstObject.resetPointsBasedOnUserInteraction()
     } else if (layer.isKindOfClass(MSRectangleShape)) {
-      var frame = [layer frame]
-      radius =
-      [frame width] >= [frame height] ?
-      [frame height] / 2 :
-      [frame width] / 2
-
-      [layer setCornerRadiusFloat:Math.round(radius)]
+      var frame = layer.frame()
+      radius = frame.width() >= frame.height() ? frame.height() / 2 : frame.width() / 2
+      layer.setCornerRadiusFloat(Math.round(radius))
     } else {
-      exceptions.push('"' + layer.name() + ' ' + layer.class() + '"')
+      exceptions.push('\'' + layer.name() + ' ' + layer.class() + '\'')
     }
 
     if (exceptions[0]) {
       if (exceptions.length > 1) {
         var exceptionItemList = exceptions.join(', ')
-        var exceptionsMessage = "Radius Pill can't be applied to the following elements: " + exceptionItemList
+        var exceptionsMessage = 'Radius Pill can\'t be applied to the following elements: ' + exceptionItemList
       } else {
         var exceptionItem = exceptions[0]
-        var exceptionsMessage = "Radius Pill can't be applied to " + exceptionItem
+        var exceptionsMessage = 'Radius Pill can\'t be applied to ' + exceptionItem
       }
 
-      [doc showMessage:exceptionsMessage]
+      doc.showMessage(exceptionsMessage)
     }
   }
 }

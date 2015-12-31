@@ -3,10 +3,12 @@
  * @copyright 2015 Ale Muñoz. All rights reserved.
  */
 
-function checkSelectionIsNotEmpty(document, selection) {
-  if (!selection.firstObject()) {
+function selectionIsEmpty(document, selection) {
+  if (selection.firstObject() === null) {
     doc.showMessage('You should select an element to use this command')
+    return true
   }
+  return false
 }
 
 /**
@@ -14,21 +16,23 @@ function checkSelectionIsNotEmpty(document, selection) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = doc || context.document
-  var selection = selection || context.selection
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
+
+  if (selectionIsEmpty(doc, selection)) return
 
   // Custom Rotation
-  var rotation = "0"
+  var rotation = '0'
 
-  if ([selection count] === 1) {
-    var layer = selection[0],
-        rotation = [layer rotation].toString()
+  if (selection.count() === 1) {
+    var layer = selection[0]
+    var rotation = layer.rotation().toString()
   }
-  rotation = [doc askForUserInput:"Rotation" initialValue:rotation]
+  rotation = doc.askForUserInput_initialValue('Rotation', rotation)
 
-  for (var i=0; i < [selection count]; i++){
-    var layer = [selection objectAtIndex:i]
-    [layer setRotation:rotation]
+  for (var i = 0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+    layer.setRotation(rotation)
   }
 }

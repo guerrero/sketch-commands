@@ -8,20 +8,14 @@
  * @param {Object} context - The current Sketch app context.
  */
 var onRun = function(context) {
-  var targetArtboard
   var doc = context.document
+  var selection = context.selection
+  var view = doc.currentView()
+  var targetArtboard = selection.count() !== 0 ? selection[0] : doc.currentPage().artboards().firstObject()
 
-  var selectedElements = context.selection
-  if(selectedElements.count() != 0) {
-    targetArtboard = selectedElements[0]
-  } else {
-    targetArtboard = doc.currentPage().artboards().firstObject()
-  }
-
-  while(targetArtboard.parentGroup() != doc.currentPage()) {
+  while (targetArtboard.parentGroup() != doc.currentPage()) {
     targetArtboard = targetArtboard.parentGroup()
   }
 
-  var view = doc.currentView()
   view.zoomToFitRect(targetArtboard.rect())
 }

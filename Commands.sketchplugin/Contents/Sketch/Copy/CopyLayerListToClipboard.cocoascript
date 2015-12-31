@@ -8,47 +8,46 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-
+var onRun = function(context) {
   // Change this variables to configure the script
-  var COPY_LAYER_TYPE = false,
-      TRAVERSE_GROUPS = true
+  var COPY_LAYER_TYPE = false
+  var TRAVERSE_GROUPS = true
+  var doc = context.document
+  var layers = doc.currentPage().layers()
+  var layerTree = ''
 
-  var layers = [[doc currentPage] layers],
-      layer_tree = "",
-      layer_depth = 0
+  function copyText(txt) {
+    var pasteBoard = NSPasteboard.generalPasteboard()
 
-  function copy_text(txt){
-    var pasteBoard = [NSPasteboard generalPasteboard]
-    [pasteBoard declareTypes:[NSArray arrayWithObject:NSPasteboardTypeString] owner:nil]
-    [pasteBoard setString:txt forType:NSPasteboardTypeString]
-  }
-  function is_group(layer) {
-    return [layer isMemberOfClass:[MSLayerGroup class]] || [layer isMemberOfClass:[MSArtboardGroup class]]
+    pasteBoard.declareTypes_owner(NSArray.arrayWithObject(NSPasteboardTypeString), nil)
+    pasteBoard.setString_forType(txt, NSPasteboardTypeString)
   }
 
-  function process_layer(layer){
-    log("processing layer " + layer + " at depth " + layer_depth)
+  function isGroup(layer) {
+    return layer.isMemberOfClass(MSLayerGroup.class()) || layer.isMemberOfClass(MSArtboardGroup.class())
+  }
+
+  function processLayer(layer) {
     if (COPY_LAYER_TYPE) {
-      layer_tree += [layer class] + ": "
+      layerTree += layer.class() + ': '
     }
-    layer_tree += [layer name]
-    layer_tree += "\n"
+    layerTree += layer.name()
+    layerTree += '\n'
 
-    if(is_group(layer) && TRAVERSE_GROUPS){
+    if (isGroup(layer) && TRAVERSE_GROUPS) {
       // we have a group, so go inside it:
-      var sublayers = [layer layers]
-      for (var i = 0; i < [sublayers count]; i++) {
-        var sublayer = [sublayers objectAtIndex:i]
-        process_layer(sublayer)
+      var sublayers = layer.layers()
+      for (var i = 0; i < sublayers.count(); i++) {
+        var sublayer = sublayers.objectAtIndex(i)
+        processLayer(sublayer)
       }
     }
   }
 
-  for (var i = 0; i < [layers count]; i++) {
-    var layer = [layers objectAtIndex:i]
-    process_layer(layer)
+  for (var i = 0; i < layers.count(); i++) {
+    var layer = layers.objectAtIndex(i)
+    processLayer(layer)
   }
 
-  copy_text(layer_tree)
+  copyText(layerTree)
 }

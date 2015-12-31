@@ -8,27 +8,27 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
-  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
+  var currentArtboard = doc.currentPage().currentArtboard() || doc.currentPage()
 
-  if (current_artboard != null) {
+  if (currentArtboard != null) {
     // Make sure rulers are visible
-    if ([doc isRulersVisible] == 0) {
-      [doc toggleRulers]
+    if (doc.isRulersVisible() == 0) {
+      doc.toggleRulers()
     }
 
-    var vertical_guides = [current_artboard verticalRulerData],
-        question = [doc askForUserInput:"Add (pos_y, distance, times)" initialValue:(0 + "," + 0 + "," + 0)],
-        pos_y = eval(question.split(",")[0]),
-        dis = eval(question.split(",")[1]),
-        times = eval(question.split(",")[2])
+    var verticalGuides = currentArtboard.verticalRulerData()
+    var question = doc.askForUserInput_initialValue('Add (posY, distance, times)', 0 + ',' + 0 + ',' + 0)
+    var posY = eval(question.split(',')[0])
+    var dis = eval(question.split(',')[1])
+    var times = eval(question.split(',')[2])
 
-    (var x=0; x < times; x++)
-      [vertical_guides addGuideWithValue:pos_y]
-      pos_y = pos_y + dis
+    for (var x = 0; x < times; x++) {
+      verticalGuides.addGuideWithValue(posY)
+      posY += dis
     }
   } else {
-    [doc showMessage:"You need to select at least one artboard"]
+    doc.showMessage('You need to select at least one artboard')
   }
 }

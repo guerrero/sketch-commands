@@ -8,25 +8,24 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
 
-  Number.prototype.times = function(callback){
-    for (var s = this - 1; s >= 0; s--){
-      callback.call(this,s)
+  Number.prototype.times = function(callback) {
+    for (var s = this - 1; s >= 0; s--) {
+      callback.call(this, s)
     }
   }
 
   // Make sure rulers are visible
-  if ([doc isRulersVisible] == 0) {
-    [doc toggleRulers]
+  if (doc.isRulersVisible() == 0) {
+    doc.toggleRulers()
   }
 
-  var horizontal_guides = [[doc currentPage] horizontalRulerData],
-      vertical_guides = [[doc currentPage] verticalRulerData]
+  var horizontalGuides = doc.currentPage().horizontalRulerData()
 
   // Remove horizontal guides
-  [horizontal_guides numberOfGuides].times(function(){
-    [horizontal_guides removeGuideAtIndex:0]
+  horizontalGuides.numberOfGuides().times(function() {
+    horizontalGuides.removeGuideAtIndex(0)
   })
 }

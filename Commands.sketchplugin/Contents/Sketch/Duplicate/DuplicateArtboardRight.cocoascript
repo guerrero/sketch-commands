@@ -8,19 +8,19 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
+  var selection = context.selection
+  var currentSelection = selection[0]
+  var parent
 
-  var selection = selection || context.selection
-  current_selection = selection[0]
-
-  if (current_selection.className() == "MSArtboardGroup") {
-    var parent = current_selection
+  if (currentSelection.className() === 'MSArtboardGroup') {
+    parent = currentSelection
   } else {
-    var parent = [current_selection parentGroup]
+    parent = currentSelection.parentGroup()
   }
 
-  var artboard_copy = [parent duplicate]
+  var artboardCopy = parent.duplicate()
 
-  [[artboard_copy frame] addX:[[parent frame] width] + 100]
-  [artboard_copy select:true byExpandingSelection:false]
+  artboardCopy.frame().addX(parent.frame().width() + 100)
+  artboardCopy.select_byExpandingSelection(true, false)
 }

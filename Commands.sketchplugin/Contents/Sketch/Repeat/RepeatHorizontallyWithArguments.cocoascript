@@ -1,31 +1,26 @@
-/**
- * @author Ale Muñoz
- * @copyright 2015 Ale Muñoz. All rights reserved.
- */
-
-@import 'library/common.js'
+@import '../library/common.js'
 
 /**
  * Repeats selected element vertically with given spacing and number of iterations
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
+  var iterations = doc.askForUserInput_initialValue('Iterations', '9').integerValue()
+  var spacing = doc.askForUserInput_initialValue('Spacing', '10').integerValue()
 
-  var doc = doc || context.document
-  var selection = selection || context.selection
+  function repeatLayer(layer) {
+    var layerFrame = layer.frame()
 
-  var iterations = [[doc askForUserInput:"Iterations" initialValue:"9"] integerValue],
-      spacing = [[doc askForUserInput:"Spacing" initialValue:"10"] integerValue]
+    for (var n = 1; n <= iterations; n++) {
+      var layerCopy = layer.duplicate()
+      layerCopy.frame().setX(layerFrame.x() + (layerFrame.width() + spacing) * n)
+    }
+  }
 
-  selection.each(function(layer){
-    frame = [layer frame]
-    iterations.times(function(r){
-      var layer_copy = [layer duplicate],
-          frame2 = [layer_copy frame]
-
-      [frame2 setX:[frame x] + ([frame width]+spacing)*r]
-
-    })
-  })
+  for (var i = 0; i < selection.count(); i++) {
+    repeatLayer(selection[i])
+  }
 }

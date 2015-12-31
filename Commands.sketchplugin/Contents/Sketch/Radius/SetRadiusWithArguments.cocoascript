@@ -14,47 +14,46 @@ function checkSelectionIsNotEmpty(document, selection) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var doc = doc || context.document
-  var selection = selection || context.selection
+var onRun = function(context) {
+  var doc = context.document
+  var selection = context.selection
 
   checkSelectionIsNotEmpty(doc, selection)
 
-  var value = "5"
-  var radius = [doc askForUserInput:"Radius" initialValue:value]
-  if(selection.firstObject())
-  for (var i = 0; i < [selection count]; i++) {
-    var layer = [selection objectAtIndex:i]
-    var exceptions = []
+  var value = '5'
+  var radius = doc.askForUserInput_initialValue('Radius', value)
+  if (selection.firstObject()) {
+    for (var i = 0; i < selection.count(); i++) {
+      var layer = selection.objectAtIndex(i)
+      var exceptions = []
 
-    if (layer.isKindOfClass(MSShapeGroup) && layer.children()[0]) {
-      if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
-        exceptions.push('"' + layer.name() + ' (' + layer.class() + ')"')
+      if (layer.isKindOfClass(MSShapeGroup) && layer.children()[0]) {
+        if (!layer.children()[0].isKindOfClass(MSRectangleShape)) {
+          exceptions.push('\'' + layer.name() + ' (' + layer.class() + ')\'')
+        } else {
+          var firstObject = layer.layers().firstObject()
+
+          firstObject.setCornerRadiusFloat(Math.round(radius))
+          firstObject.resetPointsBasedOnUserInteraction()
+        }
+      } else if (layer.isKindOfClass(MSRectangleShape)) {
+
+        layer.setCornerRadiusFloat(Math.round(radius))
       } else {
-        var frame = [layer frame]
-        var firstObject = [[layer layers] firstObject]
-
-        [firstObject setCornerRadiusFloat:Math.round(radius)]
-        [firstObject resetPointsBasedOnUserInteraction]
-      }
-    } else if (layer.isKindOfClass(MSRectangleShape)) {
-      var frame = [layer frame]
-
-      [layer setCornerRadiusFloat:Math.round(radius)]
-    } else {
-      exceptions.push('"' + layer.name() + ' (' + layer.class() + ')"')
-    }
-
-    if (exceptions[0]) {
-      if (exceptions.length > 1) {
-        var exceptionItemList = exceptions.join(', ')
-        var exceptionsMessage = "Radius Pill can't be applied to the following elements: " + exceptionItemList
-      } else {
-        var exceptionItem = exceptions[0]
-        var exceptionsMessage = "Radius Pill can't be applied to " + exceptionItem
+        exceptions.push('\'' + layer.name() + ' (' + layer.class() + ')\'')
       }
 
-      [doc showMessage:exceptionsMessage]
+      if (exceptions[0]) {
+        if (exceptions.length > 1) {
+          var exceptionItemList = exceptions.join(', ')
+          var exceptionsMessage = 'Radius Pill can\'t be applied to the following elements: ' + exceptionItemList
+        } else {
+          var exceptionItem = exceptions[0]
+          var exceptionsMessage = 'Radius Pill can\'t be applied to ' + exceptionItem
+        }
+
+        doc.showMessage(exceptionsMessage)
+      }
     }
   }
 }

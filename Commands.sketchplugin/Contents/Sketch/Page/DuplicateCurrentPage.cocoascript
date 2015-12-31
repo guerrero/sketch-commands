@@ -8,15 +8,13 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
+  var doc = context.document
+  var page = doc.currentPage()
+  var newPage = page.copy()
 
-  var doc = doc || context.document
+  newPage.setName(page.name() + ' Copy')
 
-  var page = [doc currentPage],
-      newPage = [page copy]
-
-  newPage.setName([page name] + " Copy")
-
-  [[doc documentData] addPage:newPage]
-  [doc setCurrentPage:newPage]
+  doc.documentData().addPage(newPage)
+  doc.setCurrentPage(newPage)
 }

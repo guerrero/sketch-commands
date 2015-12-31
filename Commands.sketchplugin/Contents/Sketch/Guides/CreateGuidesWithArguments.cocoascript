@@ -8,34 +8,34 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
-  var current_artboard = [[doc currentPage] currentArtboard] || [doc currentPage]
+  var currentArtboard = doc.currentPage().currentArtboard() || doc.currentPage()
 
-  if (current_artboard != null) {
+  if (currentArtboard != null) {
     // Make sure rulers are visible
-    if ([doc isRulersVisible] == 0) {
-      [doc toggleRulers]
+    if (doc.isRulersVisible() == 0) {
+      doc.toggleRulers()
     }
 
-    var horizontal_guides = [current_artboard horizontalRulerData],
-        vertical_guides = [current_artboard verticalRulerData],
-        question = [doc askForUserInput:"Position (x,y pair)" initialValue:(0 + "," + 0)]
+    var horizontalGuides = currentArtboard.horizontalRulerData()
+    var verticalGuides = currentArtboard.verticalRulerData()
+    var question = doc.askForUserInput_initialValue('Position (x,y pair)', 0 + ',' + 0)
 
-    var pos_x = eval(question.split(",")[0]),
-        pos_y = eval(question.split(",")[1])
+    var posX = eval(question.split(',')[0])
+    var posY = eval(question.split(',')[1])
 
-    if (pos_x != 0 && pos_y != 0) {
-      [horizontal_guides addGuideWithValue:pos_x]
-      [vertical_guides addGuideWithValue:pos_y]
-    } else if (pos_x != 0 && pos_y == 0) {
-      [horizontal_guides addGuideWithValue:pos_x]
-    } else if (pos_x == 0 && pos_y != 0) {
-      [vertical_guides addGuideWithValue:pos_y]
+    if (posX != 0 && posY != 0) {
+      horizontalGuides.addGuideWithValue(posX)
+      verticalGuides.addGuideWithValue(posY)
+    } else if (posX != 0 && posY == 0) {
+      horizontalGuides.addGuideWithValue(posX)
+    } else if (posX == 0 && posY != 0) {
+      verticalGuides.addGuideWithValue(posY)
     } else {
-      [doc showMessage:"No guides added"]
+      doc.showMessage('No guides added')
     }
   } else {
-    [doc showMessage:"You need to select at least one artboard"]
+    doc.showMessage('You need to select at least one artboard')
   }
 }

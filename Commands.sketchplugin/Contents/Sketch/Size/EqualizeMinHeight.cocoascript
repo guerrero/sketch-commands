@@ -8,22 +8,22 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-
+var onRun = function(context) {
   var selection = context.selection
-  var min_height = 999999
+  var minHeight = 999999
 
-  for (var i = 0; i < [selection count]; i++) {
-    var layer = [selection objectAtIndex:i],
-        frame = [layer frame],
-        height = [frame height]
+  for (var i = 0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+    var frame = layer.frame()
+    var height = frame.height()
 
-        min_height = Math.min(height, min_height)
+    minHeight = Math.min(height, minHeight)
   }
 
-  for (var i=0; i < [selection count]; i++){
-    var layer = [selection objectAtIndex:i],
-        frame = [layer frame]
-    [frame setHeight:Math.round(min_height)]
+  for (var i = 0; i < selection.count(); i++) {
+    var layer = selection.objectAtIndex(i)
+    var frame = layer.frame()
+
+    frame.setHeight(Math.round(minHeight))
   }
 }

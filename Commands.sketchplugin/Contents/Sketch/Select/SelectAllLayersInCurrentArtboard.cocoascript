@@ -8,19 +8,20 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  var page = [doc currentPage],
-      current_artboard = [page currentArtboard]
+var onRun = function(context) {
+  var doc = context.document
+  var page = doc.currentPage()
+  var currentArtboard = page.currentArtboard()
 
-  [page deselectAllLayers]
+  page.deselectAllLayers()
 
-  if (current_artboard != null) {
-    var layers = [current_artboard layers]
-    for (var i = 0; i < [layers count]; i++) {
-      var current_layer = [layers objectAtIndex:i]
-      [current_layer select:true byExpandingSelection:true]
+  if (currentArtboard != null) {
+    var layers = currentArtboard.layers()
+    for (var i = 0; i < layers.count(); i++) {
+      var currentLayer = layers.objectAtIndex(i)
+      currentLayer.select_byExpandingSelection(true, true)
     }
   } else {
-    [doc showMessage:"No active artboards, select one to make it active."]
+    doc.showMessage('No active artboards, select one to make it active.')
   }
 }

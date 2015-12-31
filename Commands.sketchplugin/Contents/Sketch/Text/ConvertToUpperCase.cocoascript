@@ -3,13 +3,13 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
- var onRun = function (context) {
-   var selection = context.selection
-   var selectionCount = selection.count()
+var onRun = function(context) {
+  var selection = context.selection
+  var selectionCount = selection.count()
 
-   for (var i = 0; i < selectionCount; i++) {
-     var layer = selection.objectAtIndex(i)
+  for (var i = 0; i < selectionCount; i++) {
+    var layer = selection.objectAtIndex(i)
 
-     if (layer.class() === MSTextLayer) layer.makeUppercase(null)
-   }
- }
+    if (layer.class() === MSTextLayer) layer.makeUppercase(null)
+  }
+}

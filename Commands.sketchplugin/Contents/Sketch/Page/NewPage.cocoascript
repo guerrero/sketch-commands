@@ -8,6 +8,6 @@
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
-  [doc addBlankPage]
+var onRun = function(context) {
+  context.document.addBlankPage()
 }

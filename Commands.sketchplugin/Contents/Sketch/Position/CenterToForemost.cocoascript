@@ -32,15 +32,15 @@ function _centerTwoObjects(targetObject, referenceObject) {
  * @function
  * @param {Object} context - The current Sketch app context.
  */
-var onRun = function (context) {
+var onRun = function(context) {
   var doc = context.document
   var selection = context.selection
   var rearmostObject = selection[0]
   var foremostObject = selection[1]
 
-  if ( selection.count() == 2){
-    _centerTwoObjects(foremostObject, rearmostObject)
+  if (selection.count() == 2) {
+    _centerTwoObjects(rearmostObject, foremostObject)
   } else {
-    doc.showMessage("You need to select exactly two objects")
+    doc.showMessage('You need to select exactly two objects')
   }
 }
