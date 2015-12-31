@@ -124,10 +124,10 @@
       "script": "Guides/CreateGuidesAroundSelection.cocoascript"
     },
     {
-      "name": "Create Guides….cocoascripts",
-      "identifier": "createguides….cocoascripts",
+      "name": "Create Guides…",
+      "identifier": "createguides…",
       "shortcut": "",
-      "script": "Guides/CreateGuidesWithArguments.cocoascripts"
+      "script": "Guides/CreateGuidesWithArguments.cocoascript"
     },
     {
       "name": "Offset…",
@@ -419,7 +419,7 @@
           "createbatchofhorizontalguides",
           "createbatchofverticalguides",
           "createguidesaroundselection",
-          "createguides….cocoascripts"
+          "createguides…"
         ]
       },
       {
